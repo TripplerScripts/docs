@@ -1,7 +1,13 @@
 {
   "index": "Introduction",
-  "tr_lib": "Tr Lib",
-  "tr_fusion": "Tr Fusion",
+  "tr_lib": {
+    "title": "Tr Lib",
+    "collapsed": true
+  },
+  "tr_fusion": {
+    "title": "Tr Fusion",
+    "collapsed": true
+  },
   "freescripts": "Free Scripts",
   "premiumscripts": "Premium Scripts"
 }

@@ -23,19 +23,19 @@ exports.tr_lib:print(paramaters)
 
 import { Callout } from 'nextra/components'
  
-<Callout>
+<Callout type="info">
   not passing the path or the line in error type of print will cause a `return` and throwing an `error`, this is better for safe codes, similar to the `assert`
 </Callout>
 
 ### Example
 
-```lua filename="wrapper/print.lua
+```lua filename="wrapper/print.lua"
 function print(parameter)
     exports.tr_lib:print(paramater)
 end
 ```
 
-```lua filename="client/main.lua
+```lua filename="shared/main.lua"
 local retval = 'Hello Lenix'
 
 -- output

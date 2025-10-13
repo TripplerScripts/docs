@@ -50,7 +50,8 @@ const config: DocsThemeConfig = {
     </div>
   ),
   sidebar: {
-    defaultMenuCollapseLevel: 1  // This is the ONLY collapse setting
+    defaultMenuCollapseLevel: 1,  // This is the ONLY collapse setting
+    toggleButton: true
   },
   project: {
     link: "https://github.com/TripplerScripts",
@@ -60,7 +61,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: "https://github.com/tripplerscripts/docs/blob/main",
   footer: {
-    text: "© 2025 Trippler",
+    text: "© 2025 Trippler"
   },
   primaryHue: { dark: 170, light: 170 },
   head: useHead,

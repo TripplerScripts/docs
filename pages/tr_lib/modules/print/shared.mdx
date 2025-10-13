@@ -8,14 +8,14 @@ a better way to print, so you can later look up and track where your codes at
 exports.tr_lib:print(paramaters)
 ```
 
-Parameters
+### Parameters
 
 * type: `string`
 * message: `string`
 * path: `debug.getinfo(1, "Sl").short_src`
 * line: `debug.getinfo(1, "Sl").currentline`
 
-Conditions
+### Conditions
 
 * valid print type `debug | error | warning | log | info | success`
 * defined message field
@@ -23,7 +23,7 @@ Conditions
 
 import { Callout } from 'nextra/components'
  
-<Callout type="success">
+<Callout>
   not passing the path or the line in error type of print will cause a `return` and throwing an `error`, this is better for safe codes, similar to the `assert`
 </Callout>
 
@@ -36,8 +36,8 @@ end
 ```
 
 ```lua filename="client/main.lua
-  local retval = 'Hello Lenix'
+local retval = 'Hello Lenix'
 
-  -- output
-  print(retval) -- Hello Lenix
+-- output
+print(retval) -- Hello Lenix
 ```

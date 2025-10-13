@@ -1,6 +1,6 @@
-# Required
+# Shared
 
-***
+## Required
 
 imports a file that has a return value by passing its relative path
 
@@ -8,20 +8,18 @@ imports a file that has a return value by passing its relative path
   exports.tr_lib:require(parameter)
 ```
 
-### parameters
+### Parameters
 
 * path: `string`
 
-### conditions
+### Conditions
 
-* valid existing file path:
-  ** simply the path should be the same as path in the fxmanifest file
-  ** the required path should be defined at least in file or files attribute of the manifest (deprecated)
-  ** mccc -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------0don't include the extension of the file ('.lua') at the end of the path since we are already taking care of that for you
- 
-* wrap it in a function for simpler use (optional) 
-
-## example
+* **Valid existing path:**
+  * Path must match the fxmanifest file path
+  * Must be defined in `file` or `files` attribute (deprecated)
+  * Don't include the extension of the file ('.lua') at the end of the path since we are already taking care of that for you.
+* **Wrap in a function** for simpler use (optional)
+## Example
 
 ```lua filename="fxmanifest.lua"
   client_scripts {

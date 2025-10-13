@@ -1,0 +1,43 @@
+# shared
+
+## print
+
+a better way to print, so you can later look up and track where your codes at
+
+```lua
+exports.tr_lib:print(paramaters)
+```
+
+Parameters
+
+* type: `string`
+* message: `string`
+* path: `debug.getinfo(1, "Sl").short_src`
+* line: `debug.getinfo(1, "Sl").currentline`
+
+Conditions
+
+* valid print type `debug | error | warning | log | info | success`
+* defined message field
+* path and line are static values (just copy paste them as is) and also not required to be passes, they help for debugging and track the location of the actual print
+
+import { Callout } from 'nextra/components'
+ 
+<Callout type="success">
+  not passing the path or the line in error type of print will cause a `return` and throwing an `error`, this is better for safe codes, similar to the `assert`
+</Callout>
+
+#### Example
+
+```lua filename="wrapper/print.lua
+function print(parameter)
+    exports.tr_lib:print(paramater)
+end
+```
+
+```lua filename="client/main.lua
+  local retval = 'Hello Lenix'
+
+  -- output
+  print(retval) -- Hello Lenix
+```

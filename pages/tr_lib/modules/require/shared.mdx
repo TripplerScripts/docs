@@ -1,0 +1,57 @@
+# required
+
+***
+
+imports a file that has a return value by passing its relative path
+
+```lua
+  exports.tr_lib:require(parameter)
+```
+
+### parameters
+
+* path: `string`
+
+### conditions
+
+* valid existing file path:
+  *simply the path should be the same as path in the fxmanifest file
+  *the required path should be defined at least in file or files attribute of the manifest (deprecated)
+  *don't include the extension of the file ('.lua') at the end of the path since we are already taking care of that for you
+
+* wrap it in a function for simpler use (optional) 
+
+## example
+
+```lua filename="fxmanifest.lua"
+  client_scripts {
+    'main.lua',
+    'utils/wrapper/print.lua',
+    'modules/loader.lua',
+    'client/config/settings/main.lua'
+  }
+  files {
+    'utils/loader.lua'
+  }
+```
+
+```lua filename="client/config/settings/main.lua"
+  return {
+    retval = 'Hello Lenix'
+  }
+```
+
+```lua filename="utils/wrapper/print.lua"
+  function require(parameter)
+    return exports.tr_lib:require(parameter)
+  end
+```
+
+```lua filename="modules/loader.lua"
+  local config = require('client/config/settings/main')
+  -- or for modern lua
+  local config = require 'client/config/settings/main'
+
+  -- output
+  print(config.retval) -- Hello Lenix
+```

@@ -51,7 +51,7 @@ const config: DocsThemeConfig = {
   ),
   sidebar: {
     defaultMenuCollapseLevel: 1  // This is the ONLY collapse setting
-  }
+  },
   project: {
     link: "https://github.com/TripplerScripts",
   },

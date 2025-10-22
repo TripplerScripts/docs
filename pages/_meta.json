@@ -2,5 +2,9 @@
   "index": "Introduction",
   "tr_lib": "Tr Lib",
   "freescripts": "Free Scripts",
-  "premiumscripts": "Premium Scripts"
+  "premiumscripts": "Premium Scripts",
+  "webstore": {
+    "title": 'Webstore',
+    ""
+  }
 }

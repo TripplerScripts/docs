@@ -4,7 +4,8 @@
   "freescripts": "Free Scripts",
   "premiumscripts": "Premium Scripts",
   "webstore": {
-    "title": 'Webstore',
-    ""
+    "title": "Webstore",
+    "type": "page",
+    "href": "https://trippler.store"
   }
 }

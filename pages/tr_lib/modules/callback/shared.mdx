@@ -3,8 +3,6 @@
 # Callback
 A callback is a function that is passed as an argument to another function and is executed after some operation has been completed. Callbacks are commonly used in asynchronous programming to handle events or the completion of tasks.
 
----
-
 ## lib.callback.register
 Register a callback that can be called from the client or server side.
 
@@ -14,7 +12,11 @@ exports.tr_lib:callback().register(name, func)
 
 ### Parameters
 * `name` (string): The name of the callback to be registered.
-* `func` (function): The function to be executed when the callback is called. This function should accept any arguments passed from the caller and return a value.
+* `func` (function): The function to be executed when the callback is called.
+
+### Notes
+* Server-side callbacks automatically receive `source` (player ID) as the first parameter when called from a client
+* Client-side callbacks automatically receive `senderId` (caller's player ID) as the first parameter
 
 ### Example
 
@@ -26,13 +28,13 @@ end
 
 ```lua filename="server/main.lua"
 registerCallback('getData', function(source, playerId)
-  return {id = playerId, name = 'John'}
+    return {id = playerId, name = 'John'}
 end)
 ```
 
 ```lua filename="client/main.lua"
-registerCallback('getHealth', function()
-  return GetEntityHealth(PlayerPedId())
+registerCallback('getHealth', function(senderId)
+    return GetEntityHealth(PlayerPedId())
 end)
 ```
 
@@ -45,7 +47,7 @@ exports.tr_lib:callback().awaitServer(name, timeout, ...)
 
 ### Parameters
 * `name` (string): The name of the callback to be executed on the server.
-* `timeout` (number, optional): The maximum time to wait for the callback to complete in milliseconds. Default is 5000.
+* `timeout` (number, optional): The maximum time to wait in milliseconds. Default is 5000.
 * `...` (any): Additional arguments to be passed to the server callback function.
 
 ### Example
@@ -59,7 +61,7 @@ end
 ```lua filename="client/main.lua"
 local result = awaitServerCallback('buyItem', 5000, 'bread', 2)
 if result and result.success then
-  print('Purchase successful!')
+    print('Purchase successful!')
 end
 ```
 
@@ -67,7 +69,6 @@ end
 local tax = awaitServerCallback('calculateTax', 5000, 1000)
 print('Tax:', tax)
 ```
-
 
 ## lib.callback.awaitClient
 Call a callback registered on the client and wait for its result from the server or client side.
@@ -79,7 +80,7 @@ exports.tr_lib:callback().awaitClient(name, playerId, timeout, ...)
 ### Parameters
 * `name` (string): The name of the callback to be executed on the client.
 * `playerId` (number): The server ID of the target player/client.
-* `timeout` (number, optional): The maximum time to wait for the callback to complete in milliseconds. Default is 5000.
+* `timeout` (number, optional): The maximum time to wait in milliseconds. Default is 5000.
 * `...` (any): Additional arguments to be passed to the client callback function.
 
 ### Example
@@ -91,28 +92,24 @@ end
 ```
 
 ```lua filename="server/main.lua"
-RegisterCommand('checkplayer', function(source, args)
-  local targetId = tonumber(args[1]) or source
-  local info = awaitClientCallback('getPlayerInfo', targetId, 5000)
-  
-  if info then
-      print('Health:', info.health)
-  end
+RegisterNetEvent('someEvent', function()
+    local info = awaitClientCallback('getPlayerInfo', source, 5000)
+    if info then
+        print('Health:', info.health)
+    end
 end)
 ```
 
 ```lua filename="client/main.lua"
-local targetPlayerId = 5
+local targetPlayerId = GetPlayerServerId(GetPlayerFromIndex(0))
 local response = awaitClientCallback('tradeRequest', targetPlayerId, 5000, 'Diamond')
-
 if response and response.accepted then
-  print('Trade accepted!')
+    print('Trade accepted!')
 end
 ```
 
 ## Notes
 
-* Server-side callbacks automatically receive `source` (player ID) as the first parameter when called from a client
 * Client-to-client communication goes through the server as a relay
 * Multiple return values are supported
 * Always check for `nil` results as they indicate timeout or errors

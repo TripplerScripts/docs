@@ -1,119 +1,175 @@
 # Shared
 
-# Callback
-A callback is a function that is passed as an argument to another function and is executed after some operation has been completed. Callbacks are commonly used in asynchronous programming to handle events or the completion of tasks.
+# Print
+a better way to print, so you can later look up and track where your codes at
 
----
+### Conditions
 
-## lib.callback.register
-Register a callback that can be called from the client or server side.
+* valid print type
+* defined message field
+
+import { Callout } from 'nextra/components'
+ 
+<Callout type="import">
+* path and line are static values "as is" (except you know what you are doing) and also not required to be passes, they help for debugging and track the location of the actual print, except the ERROR type, when you ingore them, you will be switching automatically to returnal error that stops the execution of the rest of the code
+</Callout>
+
+* aliases:
+ * error = err
+ * warning = warn
+ * info = inf
+
+## Debug
 
 ```lua
-exports.tr_lib:callback().register(name, func)
+exports.tr_lib:print().debug(message, path, line)
 ```
 
 ### Parameters
-* `name` (string): The name of the callback to be registered.
-* `func` (function): The function to be executed when the callback is called. This function should accept any arguments passed from the caller and return a value.
+* message: `string`
+* path: `debug.getinfo(1, "Sl").short_src`
+* line: `debug.getinfo(1, "Sl").currentline`
 
 ### Example
 
-```lua filename="wrapper/callback.lua"
-function registerCallback(name, func)
-  exports.tr_lib:callback().register(name, func)
+```lua filename="wrapper/print.lua"
+function print(parameter)
+    exports.tr_lib:print().debug(paramater)
 end
 ```
 
-```lua filename="server/main.lua"
-registerCallback('getData', function(source, playerId)
-  return {id = playerId, name = 'John'}
-end)
+```lua filename="shared/main.lua"
+local retval = 'Hello Lenix'
+
+print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+-- its highly recommended to use debug.getinfo on the debug mode
 ```
 
-```lua filename="client/main.lua"
-registerCallback('getHealth', function()
-  return GetEntityHealth(PlayerPedId())
-end)
-```
-
-## lib.callback.awaitServer
-Call a callback registered on the server and wait for its result from the client or server side.
+## Error
 
 ```lua
-exports.tr_lib:callback().awaitServer(name, timeout, ...)
+exports.tr_lib:print().error(message, path, line)
 ```
 
 ### Parameters
-* `name` (string): The name of the callback to be executed on the server.
-* `timeout` (number, optional): The maximum time to wait for the callback to complete in milliseconds. Default is 5000.
-* `...` (any): Additional arguments to be passed to the server callback function.
+* message: `string`
+* path: `debug.getinfo(1, "Sl").short_src`
+* line: `debug.getinfo(1, "Sl").currentline`
 
 ### Example
 
-```lua filename="wrapper/callback.lua"
-function awaitServerCallback(name, timeout, ...)
-  return exports.tr_lib:callback().awaitServer(name, timeout, ...)
+```lua filename="wrapper/print.lua"
+function print(parameter)
+    exports.tr_lib:print().error(paramater)
 end
 ```
 
-```lua filename="client/main.lua"
-local result = awaitServerCallback('buyItem', 5000, 'bread', 2)
-if result and result.success then
-  print('Purchase successful!')
-end
-```
+```lua filename="shared/main.lua"
+local retval = 'Hello Lenix'
 
-```lua filename="server/main.lua"
-local tax = awaitServerCallback('calculateTax', 5000, 1000)
-print('Tax:', tax)
+print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+-- please refer to the important note above about path and line parameters regarding ERROR type
 ```
 
 
-## lib.callback.awaitClient
-Call a callback registered on the client and wait for its result from the server or client side.
+## Warn
 
 ```lua
-exports.tr_lib:callback().awaitClient(name, playerId, timeout, ...)
+exports.tr_lib:print().warn(message, path, line)
 ```
 
 ### Parameters
-* `name` (string): The name of the callback to be executed on the client.
-* `playerId` (number): The server ID of the target player/client.
-* `timeout` (number, optional): The maximum time to wait for the callback to complete in milliseconds. Default is 5000.
-* `...` (any): Additional arguments to be passed to the client callback function.
+* message: `string`
+* path: `debug.getinfo(1, "Sl").short_src`
+* line: `debug.getinfo(1, "Sl").currentline`
 
 ### Example
 
-```lua filename="wrapper/callback.lua"
-function awaitClientCallback(name, playerId, timeout, ...)
-  return exports.tr_lib:callback().awaitClient(name, playerId, timeout, ...)
+```lua filename="wrapper/print.lua"
+function print(parameter)
+    exports.tr_lib:print().warn(paramater)
 end
 ```
 
-```lua filename="server/main.lua"
-RegisterCommand('checkplayer', function(source, args)
-  local targetId = tonumber(args[1]) or source
-  local info = awaitClientCallback('getPlayerInfo', targetId, 5000)
-  
-  if info then
-      print('Health:', info.health)
-  end
-end)
+```lua filename="shared/main.lua"
+local retval = 'Hello Lenix'
+
+print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 ```
 
-```lua filename="client/main.lua"
-local targetPlayerId = 5
-local response = awaitClientCallback('tradeRequest', targetPlayerId, 5000, 'Diamond')
 
-if response and response.accepted then
-  print('Trade accepted!')
+## Info
+
+```lua
+exports.tr_lib:print().info(message, path, line)
+```
+
+### Parameters
+* message: `string`
+* path: `debug.getinfo(1, "Sl").short_src`
+* line: `debug.getinfo(1, "Sl").currentline`
+
+### Example
+
+```lua filename="wrapper/print.lua"
+function print(parameter)
+    exports.tr_lib:print().info(paramater)
 end
 ```
 
-## Notes
+```lua filename="shared/main.lua"
+local retval = 'Hello Lenix'
 
-* Server-side callbacks automatically receive `source` (player ID) as the first parameter when called from a client
-* Client-to-client communication goes through the server as a relay
-* Multiple return values are supported
-* Always check for `nil` results as they indicate timeout or errors
-* Recommended timeout values: 3000-5000ms
+print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+```
+
+## Success
+
+```lua
+exports.tr_lib:print().success(message, path, line)
+```
+
+### Parameters
+* message: `string`
+* path: `debug.getinfo(1, "Sl").short_src`
+* line: `debug.getinfo(1, "Sl").currentline`
+
+### Example
+
+```lua filename="wrapper/print.lua"
+function print(parameter)
+    exports.tr_lib:print().success(paramater)
+end
+```
+
+```lua filename="shared/main.lua"
+local retval = 'Hello Lenix'
+
+print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+```
+
+
+## Log
+
+```lua
+exports.tr_lib:print().log(message, path, line)
+```
+
+### Parameters
+* message: `string`
+* path: `debug.getinfo(1, "Sl").short_src`
+* line: `debug.getinfo(1, "Sl").currentline`
+
+### Example
+
+```lua filename="wrapper/print.lua"
+function print(parameter)
+    exports.tr_lib:print().log(paramater)
+end
+```
+
+```lua filename="shared/main.lua"
+local retval = 'Hello Lenix'
+
+print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+```

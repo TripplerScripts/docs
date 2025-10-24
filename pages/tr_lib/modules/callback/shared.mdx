@@ -21,19 +21,17 @@ exports.tr_lib:callback().register(name, func)
 ### Example
 
 ```lua filename="wrapper/callback.lua"
-function registerCallback(name, func)
-  exports.tr_lib:callback().register(name, func)
-end
+lib = exports.tr_lib
 ```
 
 ```lua filename="server/main.lua"
-registerCallback('getData', function(source, playerId)
+lib:callback().register('getData', function(source, playerId)
     return {id = playerId, name = 'John'}
 end)
 ```
 
 ```lua filename="client/main.lua"
-registerCallback('getHealth', function(senderId)
+lib:callback().register('getHealth', function(senderId)
     return GetEntityHealth(PlayerPedId())
 end)
 ```
@@ -52,21 +50,15 @@ exports.tr_lib:callback().awaitServer(name, timeout, ...)
 
 ### Example
 
-```lua filename="wrapper/callback.lua"
-function awaitServerCallback(name, timeout, ...)
-  return exports.tr_lib:callback().awaitServer(name, timeout, ...)
-end
-```
-
 ```lua filename="client/main.lua"
-local result = awaitServerCallback('buyItem', 5000, 'bread', 2)
+local result = lib:callback().register('buyItem', 5000, 'bread', 2)
 if result and result.success then
     print('Purchase successful!')
 end
 ```
 
 ```lua filename="server/main.lua"
-local tax = awaitServerCallback('calculateTax', 5000, 1000)
+local tax = lib:callback().register('calculateTax', 5000, 1000)
 print('Tax:', tax)
 ```
 
@@ -85,15 +77,9 @@ exports.tr_lib:callback().awaitClient(name, playerId, timeout, ...)
 
 ### Example
 
-```lua filename="wrapper/callback.lua"
-function awaitClientCallback(name, playerId, timeout, ...)
-  return exports.tr_lib:callback().awaitClient(name, playerId, timeout, ...)
-end
-```
-
 ```lua filename="server/main.lua"
 RegisterNetEvent('someEvent', function()
-    local info = awaitClientCallback('getPlayerInfo', source, 5000)
+    local info = lib:callback().register('getPlayerInfo', source, 5000)
     if info then
         print('Health:', info.health)
     end
@@ -102,7 +88,7 @@ end)
 
 ```lua filename="client/main.lua"
 local targetPlayerId = GetPlayerServerId(GetPlayerFromIndex(0))
-local response = awaitClientCallback('tradeRequest', targetPlayerId, 5000, 'Diamond')
+local response = lib:callback().register('tradeRequest', targetPlayerId, 5000, 'Diamond')
 if response and response.accepted then
     print('Trade accepted!')
 end

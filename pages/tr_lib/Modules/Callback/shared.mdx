@@ -1,9 +1,8 @@
 # Shared
 
-# Callback
 A callback is a function that is passed as an argument to another function and is executed after some operation has been completed. Callbacks are commonly used in asynchronous programming to handle events or the completion of tasks.
 
-## lib.callback.register
+## lib:callback.register
 Register a callback that can be called from the client or server side.
 
 ```lua
@@ -15,28 +14,19 @@ exports.tr_lib:callback().register(name, func)
 * `func` (function): The function to be executed when the callback is called.
 
 ### Notes
-* Server-side callbacks automatically receive `source` (player ID) as the first parameter when called from a client
-* Client-side callbacks automatically receive `senderId` (caller's player ID) as the first parameter
-
-### Example
-
+* Its better to wrapper the function like this:
 ```lua filename="wrapper/callback.lua"
 lib = exports.tr_lib
 ```
+### Example
 
 ```lua filename="server/main.lua"
-lib:callback().register('getData', function(source, playerId)
-    return {id = playerId, name = 'John'}
+lib:callback().register('getVehicleClass', function(vehicle)
+    return GetVehicleClass(vehicle)
 end)
 ```
 
-```lua filename="client/main.lua"
-lib:callback().register('getHealth', function(senderId)
-    return GetEntityHealth(PlayerPedId())
-end)
-```
-
-## lib.callback.awaitServer
+## lib:callback.awaitServer
 Call a callback registered on the server and wait for its result from the client or server side.
 
 ```lua
@@ -62,7 +52,7 @@ local tax = lib:callback().register('calculateTax', 5000, 1000)
 print('Tax:', tax)
 ```
 
-## lib.callback.awaitClient
+## lib:callback.awaitClient
 Call a callback registered on the client and wait for its result from the server or client side.
 
 ```lua

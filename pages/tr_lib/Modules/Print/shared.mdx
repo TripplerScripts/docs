@@ -2,7 +2,6 @@
 import { Callout } from 'nextra/components'
 import { Tabs } from 'nextra/components'
 
-# Print
 a better way to print, so you can later look up and track where your codes at
 
 ### Conditions
@@ -10,16 +9,18 @@ a better way to print, so you can later look up and track where your codes at
 * valid print type
 * defined message field
 * only the following aliases are allowed:
- * error = err
- * warning = warn
- * info = inf
+  * error = err
+  * warning = warn
+  * info = inf
 
+### Notice
 
 <Callout type="warning">
-* path and line are static values "as is" (except you know what you are doing) and also not required to be passes, they help for debugging and track the location of the actual print, except the ERROR type, when you ingore them, you will be switching automatically to returnal error that stops the execution of the rest of the code
+path and line are static values "as is" (except you know what you are doing) and also not required to be passes, they help for debugging and track the location of the actual print, except the ERROR type, when you ignore them, you will be switching automatically to a returnal error that stops the execution of the rest of the code
 </Callout>
 
- 
+## Functions
+
 <Tabs items={['Debug', 'Error', 'Warn', 'Info', 'Success', 'Log']}>
 <Tabs.Tab>
 ## Debug
@@ -29,7 +30,7 @@ exports.tr_lib:print().debug(message, path, line)
 ```
 
 ### Parameters
-* message: `string`
+* message: `any`
 * path: `debug.getinfo(1, "Sl").short_src`
 * line: `debug.getinfo(1, "Sl").currentline`
 
@@ -48,7 +49,7 @@ print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentli
 ```
 
 <Callout type="info">
-* its highly recommended to use debug.getinfo on the debug mode
+its highly recommended to use debug.getinfo on the debug mode
 </Callout>
 </Tabs.Tab>
 <Tabs.Tab>
@@ -59,7 +60,7 @@ exports.tr_lib:print().error(message, path, line)
 ```
 
 ### Parameters
-* message: `string`
+* message: `any`
 * path: `debug.getinfo(1, "Sl").short_src`
 * line: `debug.getinfo(1, "Sl").currentline`
 
@@ -77,7 +78,7 @@ local retval = 'Hello Lenix'
 print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 ```
 <Callout type="info">
-* please refer to the important note above about path and line parameters regarding ERROR type
+please refer to the important note above about path and line parameters regarding ERROR type
 </Callout>
 </Tabs.Tab>
 <Tabs.Tab>
@@ -88,7 +89,7 @@ exports.tr_lib:print().warn(message, path, line)
 ```
 
 ### Parameters
-* message: `string`
+* message: `any`
 * path: `debug.getinfo(1, "Sl").short_src`
 * line: `debug.getinfo(1, "Sl").currentline`
 
@@ -114,7 +115,7 @@ exports.tr_lib:print().info(message, path, line)
 ```
 
 ### Parameters
-* message: `string`
+* message: `any`
 * path: `debug.getinfo(1, "Sl").short_src`
 * line: `debug.getinfo(1, "Sl").currentline`
 
@@ -140,7 +141,7 @@ exports.tr_lib:print().success(message, path, line)
 ```
 
 ### Parameters
-* message: `string`
+* message: `any`
 * path: `debug.getinfo(1, "Sl").short_src`
 * line: `debug.getinfo(1, "Sl").currentline`
 
@@ -166,7 +167,7 @@ exports.tr_lib:print().log(message, path, line)
 ```
 
 ### Parameters
-* message: `string`
+* message: `any`
 * path: `debug.getinfo(1, "Sl").short_src`
 * line: `debug.getinfo(1, "Sl").currentline`
 

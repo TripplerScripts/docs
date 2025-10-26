@@ -1,0 +1,53 @@
+# Server-Side Callbacks
+
+Callbacks provide server-client communication with synchronous-style syntax.
+
+## RegisterCallback
+Register a callback that clients can call. Automatically receives `source` as first parameter.
+
+```lua
+exports.tr_lib:RegisterCallback(name, func)
+```
+
+### Example
+```lua
+lib:RegisterCallback('getVehicle', function(source)
+    local vehicle = GetPlayerVehicle(source)
+    if not vehicle then return nil end
+    
+    return {
+        plate = vehicle.plate,
+        model = vehicle.model
+    }
+end)
+```
+
+## TriggerClientCallback
+Call a client callback and get the result.
+
+```lua
+exports.tr_lib:TriggerClientCallback(name, source, ...)
+```
+
+### Example
+```lua
+RegisterCommand('impound', function(source)
+    local vehicleData = lib:TriggerClientCallback('getVehicleData', source)
+    
+    if vehicleData then
+        ImpoundVehicle(vehicleData.plate)
+    else
+        if vehicleData.message then
+            print('Network error:', vehicleData.message)
+        else
+            print('Player not in vehicle')
+        end
+    end
+end)
+```
+
+## Notes
+* Server callbacks automatically receive `source` (player ID) as first parameter
+* Falsy results wrapped in `{message = nil}` for error checking
+* Network timeouts return `{message = 'Callback timed out after 10 seconds'}`
+* Default timeout: 10 seconds

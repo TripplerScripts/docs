@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+import { Tabs } from 'nextra/components'
 # Shared
 
 # Print
@@ -7,18 +9,19 @@ a better way to print, so you can later look up and track where your codes at
 
 * valid print type
 * defined message field
-
-import { Callout } from 'nextra/components'
- 
-<Callout type="warning">
-* path and line are static values "as is" (except you know what you are doing) and also not required to be passes, they help for debugging and track the location of the actual print, except the ERROR type, when you ingore them, you will be switching automatically to returnal error that stops the execution of the rest of the code
-</Callout>
-
-* aliases:
+* only the following aliases are allowed:
  * error = err
  * warning = warn
  * info = inf
 
+
+<Callout type="warning">
+* path and line are static values "as is" (except you know what you are doing) and also not required to be passes, they help for debugging and track the location of the actual print, except the ERROR type, when you ingore them, you will be switching automatically to returnal error that stops the execution of the rest of the code
+</Callout>
+
+ 
+<Tabs items={['Debug', 'Error', 'Warn', 'Info', 'Success', 'Log']}>
+<Tabs.Tab>
 ## Debug
 
 ```lua
@@ -47,7 +50,8 @@ print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentli
 <Callout type="info">
 * its highly recommended to use debug.getinfo on the debug mode
 </Callout>
-
+</Tabs.Tab>
+<Tabs.Tab>
 ## Error
 
 ```lua
@@ -75,8 +79,8 @@ print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentli
 <Callout type="info">
 * please refer to the important note above about path and line parameters regarding ERROR type
 </Callout>
-
-
+</Tabs.Tab>
+<Tabs.Tab>
 ## Warn
 
 ```lua
@@ -101,8 +105,8 @@ local retval = 'Hello Lenix'
 
 print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 ```
-
-
+</Tabs.Tab>
+<Tabs.Tab>
 ## Info
 
 ```lua
@@ -127,7 +131,8 @@ local retval = 'Hello Lenix'
 
 print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 ```
-
+</Tabs.Tab>
+<Tabs.Tab>
 ## Success
 
 ```lua
@@ -152,8 +157,8 @@ local retval = 'Hello Lenix'
 
 print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 ```
-
-
+</Tabs.Tab>
+<Tabs.Tab>
 ## Log
 
 ```lua
@@ -179,3 +184,5 @@ local retval = 'Hello Lenix'
 print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 
 ```
+</Tabs.Tab>
+</Tabs>

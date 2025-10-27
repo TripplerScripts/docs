@@ -1,17 +1,25 @@
-# Client-Side Callbacks
+# Client
 
 Callbacks enable communication between client and server with synchronous-style syntax.
 
-## RegisterCallback
+## register
 Register a callback that the server can call.
 
 ```lua
-exports.tr_lib:RegisterCallback(name, func)
+exports.tr_lib:register(name, func)
 ```
+
+### Parameters
+* `name` (string) - Unique identifier for the callback
+* `func` (function) - Function to execute when callback is triggered
+
+### Returns
+* `success` (boolean) - Always returns `true`
+* `message` (string) - Status message
 
 ### Example
 ```lua
-lib:RegisterCallback('getVehicleData', function()
+exports.tr_lib:register('getVehicleData', function()
     local ped = PlayerPedId()
     local vehicle = GetVehiclePedIsIn(ped, false)
     if vehicle == 0 then return nil end
@@ -23,28 +31,42 @@ lib:RegisterCallback('getVehicleData', function()
 end)
 ```
 
-## TriggerServerCallback
-Call a server callback and get the result.
+## await
+Call a server callback and wait for the result.
 
 ```lua
-exports.tr_lib:TriggerServerCallback(name, ...)
+exports.tr_lib:await([debug], name, ...)
 ```
 
-### Example
+### Parameters
+* `debug` (boolean, optional) - Enable debug logging for this callback
+* `name` (string) - Name of the server callback to trigger
+* `...` - Additional arguments to pass to the callback
+
+### Returns
+* Returns the callback result(s)
+* Returns `nil` if callback times out or doesn't exist
+* Supports multiple return values
+
+### Examples
 ```lua
-local vehicle = lib:TriggerServerCallback('getVehicle')
+-- Basic usage
+local vehicle = exports.tr_lib:await('getVehicle')
 if vehicle then
     print('Found:', vehicle.plate)
 else
-    if vehicle.message then
-        print('Network error:', vehicle.message)
-    else
-        print('No vehicle found')
-    end
+    print('No vehicle found')
 end
+
+-- With debug logging
+local result = exports.tr_lib:await(true, 'getPlayerData', playerId)
+
+-- Multiple return values
+local success, message = exports.tr_lib:await('validatePlayer')
 ```
 
 ## Notes
-* Falsy results wrapped in `{message = nil}` for error checking
-* Network timeouts return `{message = 'Callback timed out after 10 seconds'}`
 * Default timeout: 10 seconds
+* Debug mode logs callback triggers, returns, and timeouts
+* Automatically handles nil returns and multiple return values
+* Backward compatible - `debug` parameter is optional

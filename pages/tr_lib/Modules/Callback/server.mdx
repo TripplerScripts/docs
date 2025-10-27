@@ -1,17 +1,24 @@
-# Server
+# Server-Side Callbacks
 
 Callbacks provide server-client communication with synchronous-style syntax.
 
-## Register A Callback
-Register a callback that clients can call. Automatically receives `source` as first parameter.
-
+## register
+Register a callback that clients can call. Automatically receives `source` as the first parameter.
 ```lua
-exports.tr_lib:RegisterCallback(name, func)
+exports.tr_lib:register(name, func)
 ```
+
+### Parameters
+* `name` (string) - Unique identifier for the callback
+* `func` (function) - Function to execute when callback is triggered (receives `source` as first parameter)
+
+### Returns
+* `success` (boolean) - Always returns `true`
+* `message` (string) - Status message
 
 ### Example
 ```lua
-lib:RegisterCallback('getVehicle', function(source)
+exports.tr_lib:register('getVehicle', function(source)
     local vehicle = GetPlayerVehicle(source)
     if not vehicle then return nil end
     
@@ -22,32 +29,41 @@ lib:RegisterCallback('getVehicle', function(source)
 end)
 ```
 
-## TriggerClientCallback
-Call a client callback and get the result.
-
+## await
+Call a client callback and wait for the result.
 ```lua
-exports.tr_lib:TriggerClientCallback(name, source, ...)
+exports.tr_lib:await([debug], name, source, [timeout], ...any)
 ```
 
-### Example
+### Parameters
+* `debug` (boolean, optional) - Enable debug logging for this callback
+* `name` (string) - Name of the client callback to trigger
+* `source` (number) - Player server ID
+* `timeout` (number, optional) - Timeout in milliseconds (default: 10000)
+* `...any` - Additional arguments to pass to the callback
+
+### Returns
+* `any` Response from the oposite side 
+
+### Examples
 ```lua
 RegisterCommand('impound', function(source)
-    local vehicleData = lib:TriggerClientCallback('getVehicleData', source)
+    local vehicleData = exports.tr_lib:await('getVehicleData', source)
     
     if vehicleData then
         ImpoundVehicle(vehicleData.plate)
     else
-        if vehicleData.message then
-            print('Network error:', vehicleData.message)
-        else
-            print('Player not in vehicle')
-        end
+        print('Player not in vehicle')
     end
 end)
 ```
 
 ## Notes
+* Errors are logged to console and return `nil` to the caller.
 * Server callbacks automatically receive `source` (player ID) as first parameter
-* Falsy results wrapped in `{message = nil}` for error checking
-* Network timeouts return `{message = 'Callback timed out after 10 seconds'}`
-* Default timeout: 10 seconds
+* Default timeout: 10000ms (10 seconds)
+* Timeout is specified in milliseconds
+* Debug mode logs callback triggers, returns, and timeouts
+* Runtime errors are caught and logged automatically
+* Automatically handles nil returns and multiple return values
+* Backward compatible - both `debug` and `timeout` parameters are optional

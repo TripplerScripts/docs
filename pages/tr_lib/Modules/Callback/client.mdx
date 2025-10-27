@@ -1,10 +1,9 @@
-# Client
+# Client-Side Callbacks
 
 Callbacks enable communication between client and server with synchronous-style syntax.
 
 ## register
 Register a callback that the server can call.
-
 ```lua
 exports.tr_lib:register(name, func)
 ```
@@ -33,40 +32,32 @@ end)
 
 ## await
 Call a server callback and wait for the result.
-
 ```lua
-exports.tr_lib:await([debug], name, ...)
+exports.tr_lib:await([debug], name, [timeout], ...)
 ```
 
 ### Parameters
 * `debug` (boolean, optional) - Enable debug logging for this callback
 * `name` (string) - Name of the server callback to trigger
+* `timeout` (number, optional) - Timeout in milliseconds (default: 10000)
 * `...` - Additional arguments to pass to the callback
 
-### Returns
-* Returns the callback result(s)
-* Returns `nil` if callback times out or doesn't exist
-* Supports multiple return values
+* `any` Response from the oposite side
 
 ### Examples
 ```lua
--- Basic usage
+-- Basic usage (10 second timeout)
 local vehicle = exports.tr_lib:await('getVehicle')
 if vehicle then
     print('Found:', vehicle.plate)
 else
     print('No vehicle found')
 end
-
--- With debug logging
-local result = exports.tr_lib:await(true, 'getPlayerData', playerId)
-
--- Multiple return values
-local success, message = exports.tr_lib:await('validatePlayer')
 ```
 
 ## Notes
-* Default timeout: 10 seconds
+* Default timeout: 10000ms (10 seconds)
+* Timeout is specified in milliseconds
 * Debug mode logs callback triggers, returns, and timeouts
 * Automatically handles nil returns and multiple return values
-* Backward compatible - `debug` parameter is optional
+* Backward compatible - both `debug` and `timeout` parameters are optional

@@ -1,0 +1,27 @@
+# Server
+
+This will check your script's version with its version on github using API
+
+## Version
+
+```lua
+lib.version(repository, resourceName)
+```
+
+### Parameter
+* repository `string`: the repository of the script
+* resourceName `string`: the name of the resource, optional
+
+### Return
+* `boolean`: true if the script is up to date, false if not
+* `string`: the version of the script
+
+### Example
+```lua
+lib.version('https://github.com/Trippler/tr_lib')
+```
+
+### Example
+```lua
+lib.version('https://github.com/Trippler/tr_lib', 'tr_lib')
+```

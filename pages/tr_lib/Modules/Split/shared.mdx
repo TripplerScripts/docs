@@ -1,0 +1,27 @@
+# Shared
+Split a block of string to an array by separating them with the character ',' or use a custom spliter character
+
+## Split
+
+```lua
+lib.split(value, character[optional])
+```
+
+### Parameter
+* value `string`: a value you want to split
+* character `string`: the character you want to split by, default is ','
+
+* return `table<string>` a table of array
+
+### Example
+```lua
+lib.split('error,warning,debug')
+
+-- return an array of { 'error', 'warning', 'debug' }
+```
+
+```lua
+lib.split('error warning debug', ' ')
+
+-- return an array of { 'error', 'warning', 'debug' }
+```

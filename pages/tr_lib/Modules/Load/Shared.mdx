@@ -1,0 +1,27 @@
+# Shared
+Load a file's content so you can store it and use it's content without executing it
+
+## Load
+
+```lua
+lib.load(path)
+```
+
+### Parameter
+* path `string`: the path to the file you want to load, the file's extention is optional
+
+* return `...any`: the content of the file
+
+### Example
+
+```lua filename='fxmanifest.lua'
+files {
+    'client/data.json',
+    'shared/config.lua'
+}
+```
+
+```lua
+local data = lib.load('client/data')
+local config = lib.load('shared/config.lua')
+```

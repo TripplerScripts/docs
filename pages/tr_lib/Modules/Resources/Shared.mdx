@@ -1,0 +1,24 @@
+# Shared
+
+With this module you will be able to gather all of your server's resources in an array (table<string>)
+
+## Resources
+
+
+```lua
+lib.resources()
+```
+
+### Return
+* `table<string>`: all of the resources
+
+### Example
+```lua
+local resources = lib.resources()
+
+for i, resource in ipairs(resources) do
+    print(resource)
+end
+
+-- output ['tr_lib', 'tr_kit', 'tr_adapter', ...]
+```

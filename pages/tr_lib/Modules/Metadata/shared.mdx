@@ -1,0 +1,35 @@
+# Shared
+Metadata is a module that allows you to read an attribute's value, usually separated by a space character
+
+## Metadata
+
+```lua
+lib.metadata(filePath, attribute, resourceName)
+```
+
+### Parameter
+* filePath `string`: the path to the file you want to read
+* attribute `string`: the attribute you want to read
+* resourceName `string`: the name of the resource, optional
+
+### Return
+* `string`: the value of the attribute
+
+### Example
+
+```lua filename='fxmanifest.lua'
+author 'Trippler'
+version '1.0.0'
+```
+
+```lua
+local version = lib.metadata('fxmanifest.lua', 'version', 'tr_lib')
+
+print(version) -- output: 1.0.0
+```
+
+```lua
+local author = lib.metadata('fxmanifest.lua', 'author', 'tr_lib')
+
+print(author) -- output: Trippler
+```

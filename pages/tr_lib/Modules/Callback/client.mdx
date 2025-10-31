@@ -2,7 +2,7 @@
 
 Callbacks enable communication between client and server with synchronous-style syntax.
 
-## register
+## lib.callback.register
 Register a callback that the server can call.
 ```lua
 lib.callback.register(name, func)
@@ -30,7 +30,7 @@ lib.callback.register('getVehicleData', function()
 end)
 ```
 
-## await
+## lib.callback.await
 Call a server callback and wait for the result.
 ```lua
 lib.callback.await([debug], name, [timeout], ...)
@@ -42,6 +42,7 @@ lib.callback.await([debug], name, [timeout], ...)
 * `timeout` (number, optional) - Timeout in milliseconds (default: 10000)
 * `...` - Additional arguments to pass to the callback
 
+### Returns
 * `any` Response from the oposite side
 
 ### Examples

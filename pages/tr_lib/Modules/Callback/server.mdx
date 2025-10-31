@@ -2,10 +2,10 @@
 
 Callbacks provide server-client communication with synchronous-style syntax.
 
-## register
+## lib.callback.register
 Register a callback that clients can call. Automatically receives `source` as the first parameter.
 ```lua
-exports.tr_lib:register(name, func)
+lib.callback.register(name, func)
 ```
 
 ### Parameters
@@ -18,7 +18,7 @@ exports.tr_lib:register(name, func)
 
 ### Example
 ```lua
-exports.tr_lib:register('getVehicle', function(source)
+lib.callback.register('getVehicle', function(source)
     local vehicle = GetPlayerVehicle(source)
     if not vehicle then return nil end
     
@@ -29,10 +29,10 @@ exports.tr_lib:register('getVehicle', function(source)
 end)
 ```
 
-## await
+## lib.callback.await
 Call a client callback and wait for the result.
 ```lua
-exports.tr_lib:await([debug], name, source, [timeout], ...any)
+lib.callback.await([debug], name, source, [timeout], ...any)
 ```
 
 ### Parameters
@@ -48,7 +48,7 @@ exports.tr_lib:await([debug], name, source, [timeout], ...any)
 ### Examples
 ```lua
 RegisterCommand('impound', function(source)
-    local vehicleData = exports.tr_lib:await('getVehicleData', source)
+    local vehicleData = lib.callback.await('getVehicleData', source)
     
     if vehicleData then
         ImpoundVehicle(vehicleData.plate)

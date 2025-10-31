@@ -2,8 +2,10 @@
 
 imports a file that has a return value by passing its relative path
 
+## Require
+
 ```lua
-  exports.tr_lib:require(parameter)
+exports.tr_lib:require(parameter)
 ```
 
 ### Parameters
@@ -17,7 +19,7 @@ imports a file that has a return value by passing its relative path
   * Must be defined in `file` or `files` attribute (deprecated)
   * Don't include the extension of the file ('.lua') at the end of the path since we are already taking care of that for you.
 * **Wrap in a function** for simpler use (optional)
-## Example
+### Example
 
 ```lua filename="fxmanifest.lua"
   client_scripts {

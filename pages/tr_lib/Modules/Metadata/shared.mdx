@@ -1,35 +1,50 @@
 # Shared
-Metadata is a module that allows you to read an attribute's value, usually separated by a space character
+Metadata is a module that allows you to read metadata attributes from a resource's fxmanifest.lua file using the native `GetResourceMetadata` function.
 
 ## Metadata
 
 ```lua
-lib.metadata(filePath, attribute, resourceName)
+lib.metadata(keys, resourceName)
 ```
 
-### Parameter
-* filePath `string`: the path to the file you want to read
-* attribute `string`: the attribute you want to read
-* resourceName `string`: the name of the resource, optional
+### Parameters
+* keys `string | table`: the attribute key(s) you want to read
+  * If `string`: returns the value directly
+  * If `table`: returns a table with key-value pairs
+* resourceName `string`: the name of the resource (optional, defaults to current resource)
 
-### Return
-* `string`: the value of the attribute
+### Returns
+* `string`: the value of the attribute (when keys is a string)
+* `table`: a table containing key-value pairs (when keys is a table)
+* `nil`: if the attribute doesn't exist
 
-### Example
+### Examples
 
+**Single attribute**
 ```lua filename='fxmanifest.lua'
 author 'Trippler'
 version '1.0.0'
+repository 'https://github.com/TripplerScripts/tr_lib'
 ```
 
 ```lua
-local version = lib.metadata('fxmanifest.lua', 'version', 'tr_lib')
-
+local version = lib.metadata('version', 'tr_lib')
 print(version) -- output: 1.0.0
+
+local author = lib.metadata('author', 'tr_lib')
+print(author) -- output: Trippler
 ```
 
+**Multiple attributes**
 ```lua
-local author = lib.metadata('fxmanifest.lua', 'author', 'tr_lib')
+local info = lib.metadata({'version', 'repository', 'author'}, 'tr_lib')
+print(info.version)     -- output: 1.0.0
+print(info.repository)  -- output: https://github.com/TripplerScripts/tr_lib
+print(info.author)      -- output: Trippler
+```
 
-print(author) -- output: Trippler
+**Current resource (no resource name specified)**
+```lua
+local version = lib.metadata('version')
+print(version) -- output: version of the current resource
 ```

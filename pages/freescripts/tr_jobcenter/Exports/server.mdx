@@ -1,0 +1,54 @@
+# Server
+
+## givePlayerRep
+```lua
+exports.tr_jobcenter:givePlayerRep(source, identifier, jobName, type)
+```
+### Parameters
+* source: `number` The player source
+* identifier: `string` The player identifier aka citizenid
+* jobName: `string` The job name
+* type: `string` The type of rep
+  * highend
+  * high
+  * average
+  * low
+  * lowend
+  check config/shared.lua for more info
+
+### Example
+```lua
+exports.tr_jobcenter:givePlayerRep(source, '3R4L5T', 'police', 'low')
+```
+
+## getPlayerLevel
+```lua
+exports.tr_jobcenter:getPlayerLevel(identifier, jobName)
+```
+### Parameters
+* identifier: `string` The player identifier aka citizenid
+* jobName: `string` The job name
+
+### Return
+* `number` The player level
+
+### Example
+```lua
+exports.tr_jobcenter:getPlayerLevel('3R4L5T', 'police')
+```
+
+## getPlayerDiffMultiplier
+```lua
+exports.tr_jobcenter:getPlayerDiffMultiplier(identifier, jobName)
+```
+### Parameters
+* identifier: `string` The player identifier aka citizenid
+* jobName: `string` The job name
+
+### Return
+* `number` The player difficulty multiplier
+
+### Example
+```lua
+exports.tr_jobcenter:getPlayerDiffMultiplier('3R4L5T', 'police')
+```

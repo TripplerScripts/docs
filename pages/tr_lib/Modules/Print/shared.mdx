@@ -26,7 +26,7 @@ path and line are static values "as is" (except you know what you are doing) and
 ## Debug
 
 ```lua
-exports.tr_lib:print().debug(message, path, line)
+lib.print.debug(message, path, line)
 ```
 
 ### Parameters
@@ -38,7 +38,7 @@ exports.tr_lib:print().debug(message, path, line)
 
 ```lua filename="wrapper/print.lua"
 function print(parameter)
-    exports.tr_lib:print().debug(parameter)
+    lib.print.debug(parameter)
 end
 ```
 
@@ -56,7 +56,7 @@ its highly recommended to use debug.getinfo on the debug mode
 ## Error
 
 ```lua
-exports.tr_lib:print().error(message, path, line)
+lib.print.error(message, path, line)
 ```
 
 ### Parameters
@@ -68,7 +68,7 @@ exports.tr_lib:print().error(message, path, line)
 
 ```lua filename="wrapper/print.lua"
 function print(parameter)
-    exports.tr_lib:print().error(parameter)
+    lib.print.error(parameter)
 end
 ```
 
@@ -85,7 +85,7 @@ please refer to the important note above about path and line parameters regardin
 ## Warn
 
 ```lua
-exports.tr_lib:print().warn(message, path, line)
+lib.print.warn(message, path, line)
 ```
 
 ### Parameters
@@ -97,7 +97,7 @@ exports.tr_lib:print().warn(message, path, line)
 
 ```lua filename="wrapper/print.lua"
 function print(parameter)
-    exports.tr_lib:print().warn(parameter)
+    lib.print.warn(parameter)
 end
 ```
 
@@ -111,7 +111,7 @@ print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentli
 ## Info
 
 ```lua
-exports.tr_lib:print().info(message, path, line)
+lib.print.info(message, path, line)
 ```
 
 ### Parameters
@@ -123,7 +123,7 @@ exports.tr_lib:print().info(message, path, line)
 
 ```lua filename="wrapper/print.lua"
 function print(parameter)
-    exports.tr_lib:print().info(parameter)
+    lib.print.info(parameter)
 end
 ```
 
@@ -137,7 +137,7 @@ print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentli
 ## Success
 
 ```lua
-exports.tr_lib:print().success(message, path, line)
+lib.print.success(message, path, line)
 ```
 
 ### Parameters
@@ -149,7 +149,7 @@ exports.tr_lib:print().success(message, path, line)
 
 ```lua filename="wrapper/print.lua"
 function print(parameter)
-    exports.tr_lib:print().success(parameter)
+    lib.print.success(parameter)
 end
 ```
 
@@ -163,7 +163,7 @@ print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentli
 ## Log
 
 ```lua
-exports.tr_lib:print().log(message, path, line)
+lib.print.log(message, path, line)
 ```
 
 ### Parameters
@@ -175,7 +175,7 @@ exports.tr_lib:print().log(message, path, line)
 
 ```lua filename="wrapper/print.lua"
 function print(parameter)
-    exports.tr_lib:print().log(parameter)
+    lib.print.log(parameter)
 end
 ```
 

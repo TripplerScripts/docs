@@ -19,6 +19,10 @@ lib.print.debug(message, path, line)
 * path: `debug.getinfo(1, "Sl").short_src`
 * line: `debug.getinfo(1, "Sl").currentline`
 
+### Return
+* `boolean`: true if printed successfully
+* `string`: a message
+
 ### Example
 
 ```lua filename="wrapper/print.lua"

@@ -12,6 +12,10 @@ lib.require(parameter)
 
 * path: `string`
 
+### Return
+
+* `any`: a file's content
+
 ### Conditions
 
 * **Valid existing path:**
@@ -49,6 +53,8 @@ lib.require(parameter)
   local config = require('client/config/settings/main')
   -- or for modern lua
   local config = require 'client/config/settings/main'
+  -- or even
+  local config = require [[ client/config/settings/main ]]
 
   -- output
   print(config.retval) -- Hello Lenix

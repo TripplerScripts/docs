@@ -32,14 +32,14 @@ end)
 ## lib.callback.await
 Call a client callback and wait for the result.
 ```lua
-lib.callback.await([debug], name, source, [timeout], ...any)
+lib.callback.await([debug], name, source, timeout, ...any)
 ```
 
 ### Parameters
 * `debug` (boolean, optional) - Enable debug logging for this callback
 * `name` (string) - Name of the client callback to trigger
 * `source` (number) - Player server ID
-* `timeout` (number, optional) - Timeout in milliseconds (default: 10000)
+* `timeout` (number) - Timeout in milliseconds (if nil; default is: 10000)
 * `...any` - Additional arguments to pass to the callback
 
 ### Return

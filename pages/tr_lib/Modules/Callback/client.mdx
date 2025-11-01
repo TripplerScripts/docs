@@ -33,13 +33,13 @@ end)
 ## lib.callback.await
 Call a server callback and wait for the result.
 ```lua
-lib.callback.await([debug], name, [timeout], ...)
+lib.callback.await([debug], name, timeout, ...)
 ```
 
 ### Parameters
 * `debug` (boolean, optional) - Enable debug logging for this callback
 * `name` (string) - Name of the server callback to trigger
-* `timeout` (number, optional) - Timeout in milliseconds (default: 10000)
+* `timeout` (number) - Timeout in milliseconds (if nil; default is: 10000)
 * `...` - Additional arguments to pass to the callback
 
 ### Return

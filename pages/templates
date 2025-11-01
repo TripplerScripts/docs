@@ -1,8 +1,0 @@
-<Tabs items={['lua', 'js']}>
-<Tabs.Tab>
-
-</Tabs.Tab>
-<Tabs.Tab>
-
-</Tabs.Tab>
-</Tabs>

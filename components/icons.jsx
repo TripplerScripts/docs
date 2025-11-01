@@ -1,2 +1,4 @@
-export const GithubIcon = () => <img src="/github.svg" alt="GitHub" />
-export const DownloadIcon = () => <img src="/download.svg" alt="Download" />
+const iconStyle = { width: '24px', height: '24px' }
+
+export const GithubIcon = () => <img src="/github.svg" alt="GitHub" style={iconStyle} />
+export const DownloadIcon = () => <img src="/download.svg" alt="Download" style={iconStyle} />

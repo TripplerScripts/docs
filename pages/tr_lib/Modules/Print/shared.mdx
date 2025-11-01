@@ -22,7 +22,7 @@ lib.print.debug(message, path, line)
 ### Example
 
 ```lua filename="wrapper/print.lua"
-function print(parameter)
+function debugPrint(parameter)
     lib.print.debug(parameter)
 end
 ```
@@ -30,7 +30,7 @@ end
 ```lua filename="shared/main.lua"
 local retval = 'Hello Lenix'
 
-print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+debugPrint(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 ```
 
 <Callout type="info">
@@ -52,7 +52,7 @@ lib.print.error(message, path, line)
 ### Example
 
 ```lua filename="wrapper/print.lua"
-function print(parameter)
+function errorPrint(parameter)
     lib.print.error(parameter)
 end
 ```
@@ -60,7 +60,7 @@ end
 ```lua filename="shared/main.lua"
 local retval = 'Hello Lenix'
 
-print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+errorPrint(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 ```
 <Callout type="info">
 please refer to the important note above about path and line parameters regarding ERROR type
@@ -81,7 +81,7 @@ lib.print.warn(message, path, line)
 ### Example
 
 ```lua filename="wrapper/print.lua"
-function print(parameter)
+function warnPrint(parameter)
     lib.print.warn(parameter)
 end
 ```
@@ -89,7 +89,7 @@ end
 ```lua filename="shared/main.lua"
 local retval = 'Hello Lenix'
 
-print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+warnPrint(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 ```
 </Tabs.Tab>
 <Tabs.Tab>
@@ -107,7 +107,7 @@ lib.print.info(message, path, line)
 ### Example
 
 ```lua filename="wrapper/print.lua"
-function print(parameter)
+function infoPrint(parameter)
     lib.print.info(parameter)
 end
 ```
@@ -115,7 +115,7 @@ end
 ```lua filename="shared/main.lua"
 local retval = 'Hello Lenix'
 
-print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+infoPrint(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 ```
 </Tabs.Tab>
 <Tabs.Tab>
@@ -133,7 +133,7 @@ lib.print.success(message, path, line)
 ### Example
 
 ```lua filename="wrapper/print.lua"
-function print(parameter)
+function successPrint(parameter)
     lib.print.success(parameter)
 end
 ```
@@ -141,7 +141,7 @@ end
 ```lua filename="shared/main.lua"
 local retval = 'Hello Lenix'
 
-print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+successPrint(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 ```
 </Tabs.Tab>
 <Tabs.Tab>
@@ -159,7 +159,7 @@ lib.print.log(message, path, line)
 ### Example
 
 ```lua filename="wrapper/print.lua"
-function print(parameter)
+function logPrint(parameter)
     lib.print.log(parameter)
 end
 ```
@@ -167,7 +167,7 @@ end
 ```lua filename="shared/main.lua"
 local retval = 'Hello Lenix'
 
-print(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
+logPrint(retval, debug.getinfo(1, "Sl").short_src, debug.getinfo(1, "Sl").currentline)
 
 ```
 </Tabs.Tab>

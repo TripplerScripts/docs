@@ -39,8 +39,8 @@ lib.callback.await([debug], name, timeout, ...)
 ### Parameters
 * `debug` (boolean, optional) - Enable debug logging for this callback
 * `name` (string) - Name of the server callback to trigger
-* `timeout` (number) - Timeout in milliseconds (if nil; default is: 10000)
-* `...` - Additional arguments to pass to the callback
+* `timeout` (number | boolean) - Timeout in milliseconds
+* `...` (varargs) - Additional arguments to pass to the callback
 
 ### Return
 * `any` Response from the oposite side
@@ -59,6 +59,7 @@ end
 ## Notes
 * Default timeout: 10000ms (10 seconds)
 * Timeout is specified in milliseconds
+* If timeout is boolean, it will use the default timeout value
 * Debug mode logs callback triggers, returns, and timeouts
 * Automatically handles nil returns and multiple return values
 * Backward compatible - both `debug` and `timeout` parameters are optional

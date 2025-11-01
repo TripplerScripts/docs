@@ -39,7 +39,7 @@ lib.callback.await([debug], name, source, timeout, ...any)
 * `debug` (boolean, optional) - Enable debug logging for this callback
 * `name` (string) - Name of the client callback to trigger
 * `source` (number) - Player server ID
-* `timeout` (number) - Timeout in milliseconds (if nil; default is: 10000)
+* `timeout` (number | boolean) - Timeout in milliseconds
 * `...any` - Additional arguments to pass to the callback
 
 ### Return
@@ -63,6 +63,7 @@ end)
 * Server callbacks automatically receive `source` (player ID) as first parameter
 * Default timeout: 10000ms (10 seconds)
 * Timeout is specified in milliseconds
+* If timeout is boolean, it will use the default timeout value
 * Debug mode logs callback triggers, returns, and timeouts
 * Runtime errors are caught and logged automatically
 * Automatically handles nil returns and multiple return values

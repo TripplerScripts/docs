@@ -9,12 +9,12 @@ lib.callback.register(name, func)
 ```
 
 ### Parameters
-* `name` (string) - Unique identifier for the callback
-* `func` (function) - Function to execute when callback is triggered
+* name `string` - Unique identifier for the callback
+* func `function` - Function to execute when callback is triggered
 
 ### Returns
-* `success` (boolean) - Always returns `true`
-* `message` (string) - Status message
+* success `boolean` - Always returns `true`
+* message `string` - Status message
 
 ### Example
 ```lua
@@ -37,10 +37,10 @@ lib.callback.await([debug], name, timeout, ...)
 ```
 
 ### Parameters
-* `debug` (boolean, optional) - Enable debug logging for this callback
-* `name` (string) - Name of the server callback to trigger
-* `timeout` (number | boolean) - Timeout in milliseconds
-* `...` (varargs) - Additional arguments to pass to the callback
+* debug `boolean` (optional) - Enable debug logging for this callback
+* name `string` - Name of the server callback to trigger
+* timeout `number | boolean` - Timeout in milliseconds
+* ... `varargs` - Additional arguments to pass to the callback
 
 ### Return
 * `any` Response from the oposite side

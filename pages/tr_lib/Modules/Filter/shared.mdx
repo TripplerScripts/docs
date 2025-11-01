@@ -1,0 +1,34 @@
+# Shared
+Filters out a string.
+
+## lib.filter
+
+```lua
+lib.filter(string, ...)
+```
+
+### Parameters
+
+- `string`: The string to filter.
+- `...`: The filters to apply.
+
+### Returns
+
+- `string`: The filtered string.
+
+### Example
+
+```lua
+local string = lib.filter("Hello World Lenix World", "World", "Lenix")
+print(string) -- Hello ~~World~~ ~~Lenix~~ World
+```
+
+```lua
+local string = lib.filter("Hello World Lenix World", {"World", 1})
+print(string) -- Hello ~~World~~ Lenix World
+```
+
+```lua
+local string = lib.filter("Hello World Lenix World", {"World", 2}, "Lenix")
+print(string) -- Hello World ~~Lenix~~ ~~World~~
+```

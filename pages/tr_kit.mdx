@@ -1,1 +1,20 @@
+# Kit of Tools
 Kit of modules that you need on your daily coding instead of writing them on multiple environments
+
+import { Cards } from 'nextra/components'
+import { GithubIcon, DownloadIcon } from '../components/icons'
+
+<Cards>
+  <Cards.Card
+    icon={<GithubIcon />}
+    title="Repo"
+    href="https://github.com/TripplerScripts/tr_kit"
+    arrow
+  />
+  <Cards.Card
+    icon={<DownloadIcon />}
+    title="Download"
+    href="https://github.com/TripplerScripts/tr_kit/archive/refs/heads/main.zip"
+    arrow
+  />
+</Cards>

@@ -5,7 +5,7 @@ Create your pedestrians with ease by pushing your args to the functions
 
 ## createSinglePed
 ```js
-export.tr_kit.createSinglePed(model, coords, scenario, isAccessPublic, isControlPublic)
+exports.tr_kit.createSinglePed(model, coords, scenario, isAccessPublic, isControlPublic)
 ```
 
 ### Parameters
@@ -29,18 +29,18 @@ export.tr_kit.createSinglePed(model, coords, scenario, isAccessPublic, isControl
 ### Example
 
 ```js
-const ped = export.tr_kit.createSinglePed('mp_m_freemode_01', { x: 100, y: 100, z: 100 }, { name: 'WORLD_HUMAN_JANITOR', timeToLeave: 1000, playIntroClip: true }, true, true)
+const ped = exports.tr_kit.createSinglePed('mp_m_freemode_01', { x: 100, y: 100, z: 100 }, { name: 'WORLD_HUMAN_JANITOR', timeToLeave: 1000, playIntroClip: true }, true, true)
 ```
 
 ## createMultiplePeds
 ```js
-export.tr_kit.createMultiplePeds(peds, defaultSettings)
+exports.tr_kit.createMultiplePeds(peds, defaultSettings)
 ```
 
 ### Parameters
 
 * peds `object`: The peds to create, same as [createSinglePed](#createsingleped), but in an array declaring them mutiple times to have mutiple peds at once
-* defaultSettings (optional) `object`: The default settings for the peds, this is basically for instead of declaring the same settings for each ped, wrap them in an object and pass it as the second argument only one time.
+* defaultSettings`object` (optional): The default settings for the peds, this is basically for instead of declaring the same settings for each ped, wrap them in an object and pass it as the second argument only one time.
   * model `string`: The model of the ped
   * coords `object`: The coordinates of the ped
     * x: `number`
@@ -60,12 +60,48 @@ export.tr_kit.createMultiplePeds(peds, defaultSettings)
 ### Example
 
 ```js
-const ped = export.tr_kit.createMultiplePeds([{ model: 'mp_m_freemode_01', coords: { x: 100, y: 100, z: 100 }, scenario: { name: 'WORLD_HUMAN_JANITOR', timeToLeave: 1000, playIntroClip: true }, isAccessPublic: true, isControlPublic: true }], { model: 'mp_m_freemode_01', coords: { x: 100, y: 100, z: 100 }, scenario: { name: 'WORLD_HUMAN_JANITOR', timeToLeave: 1000, playIntroClip: true }, isAccessPublic: true, isControlPublic: true })
+const ped = exports.tr_kit.createMultiplePeds(
+  [
+    {
+        model: 'mp_m_freemode_01',
+        coords: { x: 100, y: 100, z: 100 },
+        scenario: {
+            name: 'WORLD_HUMAN_JANITOR',
+            timeToLeave: 1000,
+            playIntroClip: true
+        },
+        isAccessPublic: true,
+        isControlPublic: true
+    },
+    {
+        model: 'mp_m_freemode_01',
+        coords: { x: 100, y: 100, z: 100 },
+        scenario: {
+            name: 'WORLD_HUMAN_JANITOR',
+            timeToLeave: 1000,
+            playIntroClip: true
+        },
+        isAccessPublic: true,
+        isControlPublic: true
+    },
+  ],
+  {
+    model: 'mp_m_freemode_01',
+    coords: { x: 100, y: 100, z: 100 },
+    scenario: {
+        name: 'WORLD_HUMAN_JANITOR',
+        timeToLeave: 1000,
+        playIntroClip: true
+    },
+    isAccessPublic: true,
+    isControlPublic: true
+  }
+)
 ```
 
 ## clearCreatedPed
 ```js
-export.tr_kit.clearCreatedPed(entity)
+exports.tr_kit.clearCreatedPed(entity)
 ```
 
 ### Parameters
@@ -80,12 +116,12 @@ export.tr_kit.clearCreatedPed(entity)
 ### Example
 
 ```js
-export.tr_kit.clearCreatedPed(ped)
+exports.tr_kit.clearCreatedPed(ped)
 ```
 
 ## clearCreatedPeds
 ```js
-export.tr_kit.clearCreatedPeds(entities)
+exports.tr_kit.clearCreatedPeds(entities)
 ```
 
 ### Parameters
@@ -100,7 +136,7 @@ export.tr_kit.clearCreatedPeds(entities)
 ### Example
 
 ```js
-export.tr_kit.clearCreatedPeds(peds)
+exports.tr_kit.clearCreatedPeds(peds)
 ```
 ## Notes
 * All of the functions are handled by the server, you can use them on the client side, but it's recommended to use them on the server side.

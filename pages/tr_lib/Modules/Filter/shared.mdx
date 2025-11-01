@@ -1,5 +1,5 @@
 # Shared
-Filters out a string.
+Filters out a string from a string.
 
 ## lib.filter
 
@@ -20,15 +20,18 @@ lib.filter(string, ...)
 
 ```lua
 local string = lib.filter("Hello World Lenix World", "World", "Lenix")
-print(string) -- Hello ~~World~~ ~~Lenix~~ World
+print(string)
 ```
+* Output: Hello ~~World~~ ~~Lenix~~ World
 
 ```lua
 local string = lib.filter("Hello World Lenix World", {"World", 1})
-print(string) -- Hello ~~World~~ Lenix World
+print(string)
 ```
+* Output: Hello ~~World~~ Lenix World
 
 ```lua
 local string = lib.filter("Hello World Lenix World", {"World", 2}, "Lenix")
-print(string) -- Hello World ~~Lenix~~ ~~World~~
+print(string)
 ```
+* Output: Hello World ~~Lenix~~ ~~World~~

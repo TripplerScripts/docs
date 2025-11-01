@@ -22,16 +22,16 @@ lib.filter(string, ...)
 local string = lib.filter("Hello World Lenix World", "World", "Lenix")
 print(string)
 ```
-* Output: Hello ~~World~~ ~~Lenix~~ World
+* Output: `Hello ~~World~~ ~~Lenix~~ World`
 
 ```lua
 local string = lib.filter("Hello World Lenix World", {"World", 1})
 print(string)
 ```
-* Output: Hello ~~World~~ Lenix World
+* Output: `Hello ~~World~~ Lenix World`
 
 ```lua
 local string = lib.filter("Hello World Lenix World", {"World", 2}, "Lenix")
 print(string)
 ```
-* Output: Hello World ~~Lenix~~ ~~World~~
+* Output: `Hello World ~~Lenix~~ ~~World~~`

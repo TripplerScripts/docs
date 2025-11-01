@@ -25,6 +25,11 @@ lib.version.source('https://github.com/Trippler/tr_lib')
 lib.version.source('https://github.com/Trippler/tr_lib', 'tr_lib')
 ```
 
+### Notes
+
+* Archived repositories are skipped
+* Repository with no fxmanifest.lua at the very top are skipped
+
 ## lib.version.release
 this will check the version of the script's latest release on github using the API
 ```lua
@@ -47,3 +52,8 @@ lib.version.release('https://github.com/Trippler/tr_lib')
 ```lua
 lib.version.release('https://github.com/Trippler/tr_lib', 'tr_lib')
 ```
+
+### Notes
+
+* Archived repositories are skipped
+* Repository with no release are skipped

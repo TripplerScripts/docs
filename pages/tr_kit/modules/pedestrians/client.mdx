@@ -1,0 +1,102 @@
+# Client
+Create your pedestrians with ease by pushing your args to the functions
+
+## createSinglePed
+```js
+export.tr_kit.createSinglePed(model, coords, scenario, isAccessPublic, isControlPublic)
+```
+
+### Parameters
+
+* model `string`: The model of the ped
+* coords `object`: The coordinates of the ped
+  * x: `number`
+  * y: `number`
+  * z: `number`
+* scenario (optional) `object`: The scenario of the ped
+  * name `string`: The name of the scenario
+  * timeToLeave `number`: The time to leave the scenario
+  * playIntroClip `boolean`: Whether to play the intro clip
+* isAccessPublic (optional) `boolean`: Whether the ped is accessible to all players
+* isControlPublic (optional) `boolean`: Whether the ped is controllable by all players
+
+### Returns
+
+* `number`: The ped handle
+
+### Example
+
+```js
+const ped = export.tr_kit.createSinglePed('mp_m_freemode_01', { x: 100, y: 100, z: 100 }, { name: 'WORLD_HUMAN_JANITOR', timeToLeave: 1000, playIntroClip: true }, true, true)
+```
+
+## createMultiplePeds
+```js
+export.tr_kit.createMultiplePeds(peds, defaultSettings)
+```
+
+### Parameters
+
+* peds `object`: The peds to create, same as createSinglePed, but in an array declaring them mutiple times to have mutiple peds at once
+* defaultSettings (optional) `object`: The default settings for the peds, this is basically for instead of declaring the same settings for each ped, wrap them in an object and pass it as the second argument only one time.
+  * model `string`: The model of the ped
+  * coords `object`: The coordinates of the ped
+    * x: `number`
+    * y: `number`
+    * z: `number`
+  * scenario (optional) `object`: The scenario of the ped
+    * name `string`: The name of the scenario
+    * timeToLeave `number`: The time to leave the scenario
+    * playIntroClip `boolean`: Whether to play the intro clip
+  * isAccessPublic (optional) `boolean`: Whether the ped is accessible to all players
+  * isControlPublic (optional) `boolean`: Whether the ped is controllable by all players
+
+### Returns
+
+* `array`: The peds handles
+
+### Example
+
+```js
+const ped = export.tr_kit.createMultiplePeds([{ model: 'mp_m_freemode_01', coords: { x: 100, y: 100, z: 100 }, scenario: { name: 'WORLD_HUMAN_JANITOR', timeToLeave: 1000, playIntroClip: true }, isAccessPublic: true, isControlPublic: true }], { model: 'mp_m_freemode_01', coords: { x: 100, y: 100, z: 100 }, scenario: { name: 'WORLD_HUMAN_JANITOR', timeToLeave: 1000, playIntroClip: true }, isAccessPublic: true, isControlPublic: true })
+```
+
+## clearCreatedPed
+```js
+export.tr_kit.clearCreatedPed(entity)
+```
+
+### Parameters
+
+* entity `number`: The ped handle
+
+### Returns
+
+* `boolean`: Whether the ped was deleted
+* `string`: The message
+
+### Example
+
+```js
+export.tr_kit.clearCreatedPed(ped)
+```
+
+## clearCreatedPeds
+```js
+export.tr_kit.clearCreatedPeds(entities)
+```
+
+### Parameters
+
+* entities `array`: The peds handles
+
+### Returns
+
+* `boolean`: Whether the peds were deleted
+* `string`: The message
+
+### Example
+
+```js
+export.tr_kit.clearCreatedPeds(peds)
+```

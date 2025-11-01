@@ -5,15 +5,17 @@ A lightweight utility & helper library for FiveM developers. Designed to improve
 import { Cards } from 'nextra/components'
 import { GithubIcon, DownloadIcon } from '../components/icons'
 
-<Cards.Card
-  icon={<GithubIcon />}
-  title="Repo"
-  href="https://github.com/TripplerScripts/tr_lib"
-  arrow
-/>
-<Cards.Card
-  icon={<DownloadIcon />}
-  title="Download"
-  href="https://github.com/TripplerScripts/tr_lib/archive/refs/heads/main.zip"
-  arrow
-/>
+<Cards>
+  <Cards.Card
+    icon={<GithubIcon />}
+    title="Repo"
+    href="https://github.com/TripplerScripts/tr_lib"
+    arrow
+  />
+  <Cards.Card
+    icon={<DownloadIcon />}
+    title="Download"
+    href="https://github.com/TripplerScripts/tr_lib/archive/refs/heads/main.zip"
+    arrow
+  />
+</Cards>

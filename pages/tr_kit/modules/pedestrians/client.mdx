@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 # Client
 Create your pedestrians with ease by pushing your args to the functions
 
@@ -37,7 +39,7 @@ export.tr_kit.createMultiplePeds(peds, defaultSettings)
 
 ### Parameters
 
-* peds `object`: The peds to create, same as createSinglePed, but in an array declaring them mutiple times to have mutiple peds at once
+* peds `object`: The peds to create, same as <Link href="#createsingleped">createSinglePed</Link>, but in an array declaring them mutiple times to have mutiple peds at once
 * defaultSettings (optional) `object`: The default settings for the peds, this is basically for instead of declaring the same settings for each ped, wrap them in an object and pass it as the second argument only one time.
   * model `string`: The model of the ped
   * coords `object`: The coordinates of the ped

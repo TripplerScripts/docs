@@ -9,12 +9,12 @@ lib.callback.register(name, func)
 ```
 
 ### Parameters
-* `name` (string) - Unique identifier for the callback
-* `func` (function) - Function to execute when callback is triggered (receives `source` as first parameter)
+* name `string` - Unique identifier for the callback
+* func `function` - Function to execute when callback is triggered (receives `source` as first parameter)
 
 ### Returns
-* `success` (boolean) - Always returns `true`
-* `message` (string) - Status message
+* success `boolean` - Always returns `true`
+* message `string` - Status message
 
 ### Example
 ```lua
@@ -32,15 +32,15 @@ end)
 ## lib.callback.await
 Call a client callback and wait for the result.
 ```lua
-lib.callback.await([debug], name, source, timeout, ...any)
+lib.callback.await(debug, name, source, timeout, ...any)
 ```
 
 ### Parameters
-* `debug` (boolean, optional) - Enable debug logging for this callback
-* `name` (string) - Name of the client callback to trigger
-* `source` (number) - Player server ID
-* `timeout` (number | boolean) - Timeout in milliseconds
-* `...any` - Additional arguments to pass to the callback
+* debug `boolean` (optional) - Enable debug logging for this callback
+* name `string` - Name of the client callback to trigger
+* source `number` - Player server ID
+* timeout `number | boolean` - Timeout in milliseconds
+* any `varargs` - Additional arguments to pass to the callback
 
 ### Return
 * `any` Response from the oposite side 

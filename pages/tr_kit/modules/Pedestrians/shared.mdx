@@ -17,6 +17,7 @@ exports.tr_kit.createSinglePed(model, coords, scenario, isAccessPublic, isContro
   * z: `number`
 * scenario (optional) `object`: The scenario of the ped
   * name `string`: The name of the scenario
+  * freeze `boolean`: Whether to freeze the ped
   * timeToLeave `number`: The time to leave the scenario
   * playIntroClip `boolean`: Whether to play the intro clip
 * isAccessPublic (optional) `boolean`: Whether the ped is accessible to all players
@@ -48,6 +49,7 @@ exports.tr_kit.createMultiplePeds(peds, defaultSettings)
     * z: `number`
   * scenario (optional) `object`: The scenario of the ped
     * name `string`: The name of the scenario
+    * freeze `boolean`: Whether to freeze the ped
     * timeToLeave `number`: The time to leave the scenario
     * playIntroClip `boolean`: Whether to play the intro clip
   * isAccessPublic (optional) `boolean`: Whether the ped is accessible to all players
@@ -67,6 +69,7 @@ const ped = exports.tr_kit.createMultiplePeds(
         coords: { x: 100, y: 100, z: 100 },
         scenario: {
             name: 'WORLD_HUMAN_JANITOR',
+            freeze: true,
             timeToLeave: 1000,
             playIntroClip: true
         },
@@ -78,6 +81,7 @@ const ped = exports.tr_kit.createMultiplePeds(
         coords: { x: 100, y: 100, z: 100 },
         scenario: {
             name: 'WORLD_HUMAN_JANITOR',
+            freeze: true,
             timeToLeave: 1000,
             playIntroClip: true
         },
@@ -90,6 +94,7 @@ const ped = exports.tr_kit.createMultiplePeds(
     coords: { x: 100, y: 100, z: 100 },
     scenario: {
         name: 'WORLD_HUMAN_JANITOR',
+        freeze: true,
         timeToLeave: 1000,
         playIntroClip: true
     },

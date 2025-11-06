@@ -5,25 +5,26 @@ Create your pedestrians with ease by pushing your args to the functions
 
 ## createSinglePed
 ```js
-exports.tr_kit.createSinglePed(model, coords, scenario, isAccessPublic, isControlPublic)
+exports.tr_kit.createSinglePed(settings)
 ```
 
 ### Parameters
 
-* model `string`: The model of the ped
-* coords `object | array`: The coordinates of the ped
-  * x: `number`
-  * y: `number`
-  * z: `number`
+* settings `object`
+  * model `string`: The model of the ped
+  * coords `object | array`: The coordinates of the ped
+    * x: `number`
+    * y: `number`
+    * z: `number`
   * w: `number`
-* scenario (optional) `object`: The scenario of the ped
-  * name `string`: The name of the scenario
-  * freeze `boolean`: Whether to freeze the ped
-  * oblivious `boolean`: Whether to make the ped oblivious to all events happening around him.
-  * timeToLeave `number`: The time to leave the scenario
-  * playIntroClip `boolean`: Whether to play the intro clip
-* isAccessPublic (optional) `boolean`: Whether the ped is accessible to all players
-* isControlPublic (optional) `boolean`: Whether the ped is controllable by all players
+  * scenario (optional) `object`: The scenario of the ped
+    * name `string`: The name of the scenario
+    * freeze `boolean`: Whether to freeze the ped
+    * oblivious `boolean`: Whether to make the ped oblivious to all events happening around him.
+    * timeToLeave `number`: The time to leave the scenario
+    * playIntroClip `boolean`: Whether to play the intro clip
+  * isAccessPublic (optional) `boolean`: Whether the ped is accessible to all players
+  * isControlPublic (optional) `boolean`: Whether the ped is controllable by all players
 
 ### Returns
 
@@ -32,7 +33,18 @@ exports.tr_kit.createSinglePed(model, coords, scenario, isAccessPublic, isContro
 ### Example
 
 ```js
-const ped = exports.tr_kit.createSinglePed('mp_m_freemode_01', { x: 100, y: 100, z: 100 }, { name: 'WORLD_HUMAN_JANITOR', timeToLeave: 1000, playIntroClip: true }, true, true)
+const ped = exports.tr_kit.createSinglePed({
+    model: 'mp_m_freemode_01',
+    coords: { x: 100, y: 100, z: 100, w: 0 },
+    scenario: {
+        name: 'WORLD_HUMAN_JANITOR',
+        freeze: true,
+        timeToLeave: 1000,
+        playIntroClip: true
+    },
+    isAccessPublic: true,
+    isControlPublic: true
+})
 ```
 
 ## createMultiplePeds
@@ -42,7 +54,7 @@ exports.tr_kit.createMultiplePeds(peds, defaultSettings)
 
 ### Parameters
 
-* peds `object`: The peds to create, same as [createSinglePed](#createsingleped), but in an array declaring them mutiple times to have mutiple peds at once
+* peds `array`: The peds to create, same as [createSinglePed](#createsingleped), but in an array declaring them mutiple times to have mutiple peds at once
 * defaultSettings`object` (optional): The default settings for the peds, this is basically for instead of declaring the same settings for each ped, wrap them in an object and pass it as the second argument only one time.
   * model `string`: The model of the ped
   * coords `object | array`: The coordinates of the ped
@@ -65,7 +77,7 @@ exports.tr_kit.createMultiplePeds(peds, defaultSettings)
 ### Example
 
 ```js
-const ped = exports.tr_kit.createMultiplePeds(
+const peds = exports.tr_kit.createMultiplePeds(
   [
     {
         model: 'mp_m_freemode_01',

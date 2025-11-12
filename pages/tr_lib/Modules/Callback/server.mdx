@@ -2,68 +2,108 @@
 Callbacks provide server-client communication with synchronous-style syntax.
 
 ## lib.callback.register
-Register a callback that clients can call. Automatically receives `source` as the first parameter.
+Register a callback that clients can await for.
 ```lua
-lib.callback.register(name, func)
+lib.callback.register(name, function)
 ```
 
 ### Parameters
-* name `string` - Unique identifier for the callback
-* func `function` - Function to execute when callback is triggered (receives `source` as first parameter)
+* name: `string`
+* function: `function`
 
 ### Returns
-* success `boolean` - Always returns `true`
-* message `string` - Status message
+* success `boolean`
 
 ### Example
-```lua
-lib.callback.register('getVehicle', function(source)
-    local vehicle = GetPlayerVehicle(source)
-    if not vehicle then return nil end
-    
-    return {
-        plate = vehicle.plate,
-        model = vehicle.model
-    }
+**Lua**
+```lua filename="server.lua"
+lib.callback.register('createMultiplePeds', function(source, peds, defaultSettings)
+  local createdPeds<const> = createMultiplePeds(source, peds, defaultSettings)
+  return createdPeds
 end)
+
+**JavaScript**
+```js filename="server.js"
+lib.callback.register('createMultiplePeds', function(source, peds, defaultSettings) {
+  const createdPeds = createMultiplePeds(source, peds, defaultSettings)
+  return createdPeds
+})
 ```
 
 ## lib.callback.await
-Call a client callback and wait for the result.
+Await for a client callback's result.
 ```lua
-lib.callback.await(debug, name, source, timeout, ...any)
+lib.callback.await(debug, name, timeout, source, ...)
 ```
 
 ### Parameters
-* debug `boolean` (optional) - Enable debug logging for this callback
-* name `string` - Name of the client callback to trigger
-* source `number` - Player server ID
-* timeout `number | boolean` - Timeout in milliseconds
-* any `varargs` - Additional arguments to pass to the callback
+* debug: `boolean` (optional)
+* name: `string`
+* timeout: `number | nil`
+* source: `number`
+* ...: `varargs`
 
 ### Return
-* `any` Response from the oposite side 
+* `any`
 
 ### Examples
-```lua
-RegisterCommand('impound', function(source)
-    local vehicleData = lib.callback.await('getVehicleData', source)
-    
-    if vehicleData then
-        ImpoundVehicle(vehicleData.plate)
-    else
-        print('Player not in vehicle')
-    end
+**Lua**
+```lua filename="server.lua"
+lib.callback.register('createSinglePed', function(source, settings)
+  local fallback<const> = lib.callback.await('getDefaultSettings', nil, source, settings)
+  local createdPeds<const> = createSinglePed(settings, fallback)
+  return createdPeds
 end)
 ```
+**JavaScript**
+```js filename="server.js"
+lib.callback.register('createSinglePed', function(source, settings) {
+  const fallback = await lib.callback.await('getDefaultSettings', nil, source, settings)
+  const createdPeds = createSinglePed(settings, fallback)
+  return createdPeds
+})
+```
+---
+## learn more
+### register
 
-## Notes
-* Errors are logged to console and return `nil` to the caller.
-* Server callbacks automatically receive `source` (player ID) as first parameter
-* Default timeout: 10000ms (10 seconds)
-* Timeout is specified in milliseconds
-* If timeout is boolean, it will use the default timeout value
-* Debug mode logs callback triggers, returns, and timeouts
-* Runtime errors are caught and logged automatically
-* Automatically handles nil returns and multiple return values
-* Backward compatible - both `debug` and `timeout` parameters are optional
+#### Parameters
+name: Name of the server callback to register.
+function: Function to execute when callback is triggered (always receives `source` as first parameter).
+
+#### Receive
+
+---
+
+### await
+
+#### Parameters
+* debug: 
+  * Enable debug logging for this callback.
+  * Debug mode logs callback's triggers, returns, and timeouts that went during that callback's trip.
+* name:
+  * Name of the registered client callback to await for.
+* timeout:
+  * How much time in ~~milliseconds~~ to await for the client side before timing-out the callback and breaking it. 
+  * You can pass nil to use the default time (default: 10000).
+* source:
+  * The client player server's ID to await from.
+* ...:
+  * Additional arguments to pass to the callback.
+
+#### Receive
+* Response from the oposite side.
+
+## callouts
+<Callout type="important">
+all callbacks are unique identifiers for the callback, you don't need to pass the resource name and the side.
+* e.g lib.callback.register('tr_kit:server:getData').
+  instead just do lib.callback.register('getData').
+  for security reasons, the callbacks are designed to be local only and no one else can call them.
+</Callout>
+
+<Callout type="info">
+* Runtime errors are caught and logged automatically.
+* Automatically handles nil returns and multiple return values.
+* Awaiting from the js will not block the runtime, you need to use the native `await` attr and synchronousing the function you are in.
+</Callout>

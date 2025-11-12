@@ -1,0 +1,47 @@
+import { Callout } from 'nextra/components'
+
+* Please make sure that in every time we mention source we mean it only for the server side of the callbacks only.
+
+# Learn more
+## **register**
+
+### Parameters
+* name: Name of the server callback to register.
+* func: Function to execute when callback is triggered (always receives `source` as first parameter).
+
+### Receive
+* return: boolean, if the callbacks successfuly register will return true, if not it will return false.
+---
+
+## **await**
+
+### Parameters
+* debug: 
+  * Enable debug logging for this callback.
+  * Debug mode logs callback's triggers, returns, and timeouts that went during that callback's trip.
+* name:
+  * Name of the registered client callback to await for.
+* timeout:
+  * How much time in __milliseconds__ to await for the client side before timing-out the callback and breaking it. 
+  * You can pass nil to use the default time (default: 10000).
+* source:
+  * The client player server's ID to await from.
+* ... :
+  * Additional arguments to pass to the callback.
+
+### Receive
+* Response from the oposite side.
+
+# callouts
+<Callout type="warning">
+* All registered callbacks are unique identifiers for the callback, you don't need to pass the resource name and the side.
+* e.g lib.callback.register('tr_kit:server:getData').
+  instead just do lib.callback.register('getData').
+  for security reasons, the callbacks are designed to be local only and no one else can call them.
+</Callout>
+
+<Callout type="info">
+* Runtime errors are caught and logged automatically.
+* Automatically handles nil returns and multiple return values.
+* Awaiting from the js will not block the runtime, you need to use the native `await` attr and synchronousing the function you are in.
+</Callout>

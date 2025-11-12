@@ -1,0 +1,42 @@
+# Shared
+import { Callout } from 'nextra/components'
+import { Tabs } from 'nextra/components'
+
+A better way to print, so you can later look up and track where your codes at
+
+## lib.console
+
+<Tabs items={['Fatal', 'Info', 'Trace']}>
+<Tabs.Tab>
+## Fatal
+* Used for crucial error handling that fatals the runtime, good for safe approaches
+```lua
+lib.console.fatal(message)
+```
+
+### Parameters
+* message: `any`
+
+</Tabs.Tab>
+<Tabs.Tab>
+## Info
+* Used to print usual information, such as log or success operations
+```lua
+lib.console.info(message)
+```
+
+### Parameters
+* message: `any`
+
+</Tabs.Tab>
+<Tabs.Tab>
+## Trace
+* A powerful module that helps you track and organize your codes by putting traces on your code to debug a certain bug on it
+```lua
+lib.console.trace(message)
+```
+
+### Parameters
+* message: `any`
+
+</Tabs.Tab>

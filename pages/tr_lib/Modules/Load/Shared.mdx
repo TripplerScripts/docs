@@ -4,11 +4,12 @@ Load a file's content so you can store it and use it's content without executing
 ## lib.load
 
 ```lua
-lib.load(path)
+lib.load(path, resourcename)
 ```
 
 ### Parameter
 * path `string`: the path to the file you want to load, the file's extention is optional
+* resourcename `string` (optional): the resource name of the script you want to load from
 
 ### Return
 * `...any`: the content of the file, usually an array of tables
@@ -27,5 +28,7 @@ local data = lib.load('client/data')
 local config = lib.load('shared/config.lua')
 ```
 
-### Notes
+## Callouts
+<Callout type="warning">
 * The file you want to load must be in the (`files` | `file`) (table | string) of your `fxmanifest.lua`
+</Callout>

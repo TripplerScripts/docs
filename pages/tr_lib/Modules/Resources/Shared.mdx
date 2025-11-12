@@ -11,12 +11,12 @@ lib.resources(exclude)
 * exclude: `string | array`
 
 ### Return
-* `array`: all of the resources
+* `array`: all of the resource's names
 
 ### Example
 
 ```lua
-local resources = lib.resources()
+local resources = lib.resources('tr_compatibilities')
 
 for i, resource in ipairs(resources) do
     print(resource)

@@ -4,6 +4,7 @@ A lightweight utility & helper library for FiveM developers. Designed to improve
 
 import { Cards } from 'nextra/components'
 import { GithubIcon, DownloadIcon } from '../components/icons'
+import { Tabs } from 'nextra/components'
 
 <Cards>
   <Cards.Card
@@ -19,3 +20,21 @@ import { GithubIcon, DownloadIcon } from '../components/icons'
     arrow
   />
 </Cards>
+
+* How to use the library
+<Tabs items={['exports', 'load']}>
+<Tabs.Tab>
+* **Lua**
+```lua filename='lua'
+local lib<const> = exports.tr_lib:require('@tr_lib/get')
+```
+* **JavaScript**
+</Tabs.Tab>
+<Tabs.Tab>
+* **Lua**
+```lua filename='lua'
+const lib = exports.tr_lib.require('@tr_lib/get')
+```
+* **JavaScript**
+</Tabs.Tab>
+</Tabs>

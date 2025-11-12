@@ -1,5 +1,5 @@
 # Shared
-imports a file that has a return value by passing its relative path
+Imports a file that has a return value by passing its relative path
 
 ## lib.require
 
@@ -12,51 +12,25 @@ lib.require(parameter)
 
 ### Return
 * `any`: a file's content
+---
+### Examples
 
-### Conditions
-
-* **Valid existing path:**
-  * Path must match the fxmanifest file path
-  * Must be defined in `file` or `files` attribute (deprecated)
-  * Don't include the extension of the file ('.lua') at the end of the path since we are already taking care of that for you.
-* **Wrap in a function** for simpler use (optional)
-### Example
-
-```lua filename="fxmanifest.lua"
-  client_scripts {
-    'main.lua',
-    'utils/wrapper/print.lua',
-    'modules/loader.lua',
-    'client/config/settings/main.lua'
-  }
-  files {
-    'utils/loader.lua'
-  }
+```lua filename="shared.lua"
+  local config = lib.require('config/shared')
+  print(config.retval) -- Hello Lenix
 ```
 
-```lua filename="client/config/settings/main.lua"
+```lua filename="config/shared.lua"
   return {
     retval = 'Hello Lenix'
   }
 ```
 
-```lua filename="utils/wrapper/print.lua"
-  function require(parameter)
-    return exports.tr_lib:require(parameter)
-  end
-```
-
-```lua filename="modules/loader.lua"
-  local config = require('client/config/settings/main')
-  -- or for modern lua
-  local config = require 'client/config/settings/main'
-  -- or even
-  local config = require [[ client/config/settings/main ]]
-
-  -- output
-  print(config.retval) -- Hello Lenix
-```
-
-### Notes
-* The file you want to import must be defined in the fxmanifest file | files
-* When you require a file, you'll execute it
+### Callout
+<Callout type='info'>
+* The file you want to import must be defined atleast in the fxmanifest's file | files
+* Requiring a file will automatically execute its content
+* Don't include the extension of the file ('.lua') at the end of the path since we are already taking care of that.
+* If the system could not find the path, please refer to your fxmanifest and copy how you defined that file that you are trying to require
+* The file you want to require, it must be void so you can receive its content
+</Callout>

@@ -25,16 +25,15 @@ import { Tabs } from 'nextra/components'
 <Tabs items={['exports', 'load']}>
 <Tabs.Tab>
 * **Lua**
-```lua filename='lua'
+```lua filename='shared.lua'
 local lib<const> = exports.tr_lib:require('@tr_lib/get')
 ```
 * **JavaScript**
-</Tabs.Tab>
-<Tabs.Tab>
-* **Lua**
-```lua filename='lua'
+```lua filename='shared.js'
 const lib = exports.tr_lib.require('@tr_lib/get')
 ```
-* **JavaScript**
+</Tabs.Tab>
+<Tabs.Tab>
+* Unfortunately this library doesn't support the loading from the fxmanifest, just make sure that we are still working on this.
 </Tabs.Tab>
 </Tabs>

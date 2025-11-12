@@ -1,21 +1,21 @@
 import { Callout } from 'nextra/components'
 
-# Server-Side Callbacks
+# Server
 Callbacks provide server-client communication with synchronous-style syntax.
 
 ## lib.callback.register
 Register a callback that clients can await for.
 ```lua
-lib.callback.register(name, function)
+lib.callback.register(name, func)
 ```
 
 ### Parameters
 * name: `string`
-* function: `function`
+* func: `function`
 
 ### Returns
 * success `boolean`
-
+---
 ### Example
 **Lua**
 ```lua filename="server.lua"
@@ -23,7 +23,7 @@ lib.callback.register('createMultiplePeds', function(source, peds, defaultSettin
   local createdPeds<const> = createMultiplePeds(source, peds, defaultSettings)
   return createdPeds
 end)
-
+```
 **JavaScript**
 ```js filename="server.js"
 lib.callback.register('createMultiplePeds', function(source, peds, defaultSettings) {
@@ -47,7 +47,7 @@ lib.callback.await(debug, name, timeout, source, ...)
 
 ### Return
 * `any`
-
+---
 ### Examples
 **Lua**
 ```lua filename="server.lua"
@@ -65,21 +65,21 @@ lib.callback.register('createSinglePed', function(source, settings) {
   return createdPeds
 })
 ```
----
+
 ## learn more
-### register
+### **register**
 
-#### Parameters
-name: Name of the server callback to register.
-function: Function to execute when callback is triggered (always receives `source` as first parameter).
+### Parameters
+* name: Name of the server callback to register.
+* func: Function to execute when callback is triggered (always receives `source` as first parameter).
 
-#### Receive
-
+### Receive
+* return: boolean, if the callbacks successfuly register will return true, if not it will return false.
 ---
 
-### await
+### **await**
 
-#### Parameters
+### Parameters
 * debug: 
   * Enable debug logging for this callback.
   * Debug mode logs callback's triggers, returns, and timeouts that went during that callback's trip.
@@ -90,14 +90,14 @@ function: Function to execute when callback is triggered (always receives `sourc
   * You can pass nil to use the default time (default: 10000).
 * source:
   * The client player server's ID to await from.
-* ...:
+* ... :
   * Additional arguments to pass to the callback.
 
-#### Receive
+### Receive
 * Response from the oposite side.
 
 ## callouts
-<Callout type="important">
+<Callout type="warning">
 all callbacks are unique identifiers for the callback, you don't need to pass the resource name and the side.
 * e.g lib.callback.register('tr_kit:server:getData').
   instead just do lib.callback.register('getData').

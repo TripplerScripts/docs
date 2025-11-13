@@ -21,7 +21,7 @@ exports.tr_kit.createSinglePed(settings)
 
 ```js
 const netId = exports.tr_kit.createSinglePed({
-  model: 'mp_m_freemode_01',
+  hash: GetHashKey('mp_m_freemode_01'),
   coords: { x: 100, y: 100, z: 100, w: 0 },
   scenario: {
     name: 'WORLD_HUMAN_JANITOR',
@@ -51,7 +51,7 @@ exports.tr_kit.createMultiplePeds(peds, defaultSettings)
 const netIds = exports.tr_kit.createMultiplePeds(
   [
     {
-      model: 'mp_m_freemode_01',
+      model: GetHashKey('mp_m_freemode_01'),
       coords: { x: 100, y: 100, z: 100, w: 0 },
       scenario: {
           name: 'WORLD_HUMAN_JANITOR',
@@ -61,7 +61,7 @@ const netIds = exports.tr_kit.createMultiplePeds(
       },
     },
     {
-      model: 'mp_m_freemode_01',
+      model: GetHashKey('mp_m_freemode_01'),
       coords: { x: 100, y: 100, z: 100, w: 0 },
       scenario: {
           name: 'WORLD_HUMAN_JANITOR',
@@ -73,7 +73,7 @@ const netIds = exports.tr_kit.createMultiplePeds(
     ....
   ],
   {
-    model: 'mp_m_freemode_01',
+    model: GetHashKey('mp_m_freemode_01'),
     coords: { x: 100, y: 100, z: 100, w: 0 },
     scenario: {
       name: 'WORLD_HUMAN_JANITOR',
@@ -121,7 +121,7 @@ exports.tr_kit.clearCreatedPeds(netIds)
 
 ## Options
 
-* model `string`: The model of the ped
+* hash `number`: The hash of the ped model
 * coords `object | array`: The coordinates of the ped
   * object:
     * x: `number`

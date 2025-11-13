@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Callout } from 'nextra/components'
 
 # Shared
 Create your pedestrians with ease by pushing your args to the functions
@@ -10,40 +11,24 @@ exports.tr_kit.createSinglePed(settings)
 
 ### Parameters
 
-* settings `object`
-  * model `string`: The model of the ped
-  * coords `object | array`: The coordinates of the ped
-    * x: `number`
-    * y: `number`
-    * z: `number`
-  * w: `number`
-  * scenario (optional) `object`: The scenario of the ped
-    * name `string`: The name of the scenario
-    * freeze `boolean`: Whether to freeze the ped
-    * oblivious `boolean`: Whether to make the ped oblivious to all events happening around him.
-    * timeToLeave `number`: The time to leave the scenario
-    * playIntroClip `boolean`: Whether to play the intro clip
-  * isAccessPublic (optional) `boolean`: Whether the ped is accessible to all players
-  * isControlPublic (optional) `boolean`: Whether the ped is controllable by all players
+* settings `object`: `[Options](#Options)`
 
 ### Returns
 
-* `number`: The ped handle
+* netId `number`: The entity netId
 
-### Example
+### Examples
 
 ```js
-const ped = exports.tr_kit.createSinglePed({
-    model: 'mp_m_freemode_01',
-    coords: { x: 100, y: 100, z: 100, w: 0 },
-    scenario: {
-        name: 'WORLD_HUMAN_JANITOR',
-        freeze: true,
-        timeToLeave: 1000,
-        playIntroClip: true
-    },
-    isAccessPublic: true,
-    isControlPublic: true
+const netId = exports.tr_kit.createSinglePed({
+  model: 'mp_m_freemode_01',
+  coords: { x: 100, y: 100, z: 100, w: 0 },
+  scenario: {
+    name: 'WORLD_HUMAN_JANITOR',
+    freeze: true,
+    timeToLeave: 1000,
+    playIntroClip: true
+  },
 })
 ```
 
@@ -54,109 +39,111 @@ exports.tr_kit.createMultiplePeds(peds, defaultSettings)
 
 ### Parameters
 
-* peds `array`: The peds to create, same as [createSinglePed](#createsingleped), but in an array declaring them mutiple times to have mutiple peds at once
-* defaultSettings`object` (optional): The default settings for the peds, this is basically for instead of declaring the same settings for each ped, wrap them in an object and pass it as the second argument only one time.
-  * model `string`: The model of the ped
-  * coords `object | array`: The coordinates of the ped
-    * x: `number`
-    * y: `number`
-    * z: `number`
-    * w: `number`
-  * scenario (optional) `object`: The scenario of the ped
-    * name `string`: The name of the scenario
-    * freeze `boolean`: Whether to freeze the ped
-    * timeToLeave `number`: The time to leave the scenario
-    * playIntroClip `boolean`: Whether to play the intro clip
-  * isAccessPublic (optional) `boolean`: Whether the ped is accessible to all players
-  * isControlPublic (optional) `boolean`: Whether the ped is controllable by all players
-
+* peds `array` of `[Options](#Options)`
+* defaultSettings `object` (optional): `[Options](#Options)`
 ### Returns
 
-* `array`: The peds handles
+* `array`: The ped netIds
 
-### Example
+### Examples
 
 ```js
-const peds = exports.tr_kit.createMultiplePeds(
+const netIds = exports.tr_kit.createMultiplePeds(
   [
     {
-        model: 'mp_m_freemode_01',
-        coords: { x: 100, y: 100, z: 100, w: 0 },
-        scenario: {
-            name: 'WORLD_HUMAN_JANITOR',
-            freeze: true,
-            timeToLeave: 1000,
-            playIntroClip: true
-        },
-        isAccessPublic: true,
-        isControlPublic: true
+      model: 'mp_m_freemode_01',
+      coords: { x: 100, y: 100, z: 100, w: 0 },
+      scenario: {
+          name: 'WORLD_HUMAN_JANITOR',
+          freeze: true,
+          timeToLeave: 1000,
+          playIntroClip: true
+      },
     },
     {
-        model: 'mp_m_freemode_01',
-        coords: { x: 100, y: 100, z: 100, w: 0 },
-        scenario: {
-            name: 'WORLD_HUMAN_JANITOR',
-            freeze: true,
-            timeToLeave: 1000,
-            playIntroClip: true
-        },
-        isAccessPublic: true,
-        isControlPublic: true
+      model: 'mp_m_freemode_01',
+      coords: { x: 100, y: 100, z: 100, w: 0 },
+      scenario: {
+          name: 'WORLD_HUMAN_JANITOR',
+          freeze: true,
+          timeToLeave: 1000,
+          playIntroClip: true
+      },
     },
+    ....
   ],
   {
     model: 'mp_m_freemode_01',
     coords: { x: 100, y: 100, z: 100, w: 0 },
     scenario: {
-        name: 'WORLD_HUMAN_JANITOR',
-        freeze: true,
-        timeToLeave: 1000,
-        playIntroClip: true
+      name: 'WORLD_HUMAN_JANITOR',
+      freeze: true,
+      timeToLeave: 1000,
+      playIntroClip: true
     },
-    isAccessPublic: true,
-    isControlPublic: true
   }
 )
 ```
 
 ## clearCreatedPed
 ```js
-exports.tr_kit.clearCreatedPed(entity)
+exports.tr_kit.clearCreatedPed(netId)
 ```
 
 ### Parameters
-
-* entity `number`: The ped handle
+* netId `number`: The ped netId.
 
 ### Returns
-
-* `boolean`: Whether the ped was deleted
-* `string`: The message
-
-### Example
+* success `boolean`: Whether the ped was deleted or not.
+---
+### Examples
 
 ```js
-exports.tr_kit.clearCreatedPed(ped)
+exports.tr_kit.clearCreatedPed(netId)
 ```
 
 ## clearCreatedPeds
 ```js
-exports.tr_kit.clearCreatedPeds(entities)
+exports.tr_kit.clearCreatedPeds(netIds)
 ```
 
 ### Parameters
-
-* entities `array`: The peds handles
+* netIds `array`: The ped netIds
 
 ### Returns
-
-* `boolean`: Whether the peds were deleted
-* `string`: The message
-
-### Example
+* `boolean`: Whether the peds were deleted or not.
+---
+### Examples
 
 ```js
-exports.tr_kit.clearCreatedPeds(peds)
+exports.tr_kit.clearCreatedPeds(netIds)
 ```
-## Notes
-* All of the functions are handled by the server, you can use them on the client side, but it's recommended to use them on the server side.
+
+## Options
+
+* model `string`: The model of the ped
+* coords `object | array`: The coordinates of the ped
+  * object:
+    * x: `number`
+    * y: `number`
+    * z: `number`
+    * w: `number`
+  or
+  * array:
+    * `number`
+    * `number`
+    * `number`
+    * `number`
+* w: `number`
+* scenario (optional) `object`: The scenario of the ped
+  * name `string`: The name of the scenario [List of scenario names](https://pastebin.com/6mrYTdQv)
+  * freeze `boolean`: preventing ped's coordinates to change
+  * oblivious `boolean`: makes the ped oblivious to all events happening around him.
+  * timeToLeave `number`: Sets the timeout on the scenario point to the specified time in milliseconds. If less than 0, sets the IdleForever flag.
+  * playIntroClip `boolean`: If the ped should play the scenarios enter animation. Sets the SkipEnterClip flag.
+
+## Callouts
+<Callouts type='info'>
+* All of the functions are handled by the server, you can use them on the client side, but it's recommended to use them from the server side.
+* Now we are no longer allowing to pass whether or not the entity should be networked or not since most of the time you are going to clear the entity after use.
+</Callouts>

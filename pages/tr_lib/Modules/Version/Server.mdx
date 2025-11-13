@@ -1,59 +1,53 @@
 # Server
-This will check your script's version with its version on github using API
+This will check your resource's version with its version on github using API
 
 ## lib.version.source
-this will check the version of the script's source code on github using the API
+this will check the version of the resource's __source code__ on github using the API
 ```lua
-lib.version.source(repository, resourceName)
+lib.version.source(repositoryURL, currentVersion, targetResourceName)
 ```
 
 ### Parameter
-* repository `string`: the repository of the script
-* resourceName `string`: the name of the resource, optional
+* repositoryURL `string` (optional): the url of the repository you want to compare with your current resource.
+* currentVersion `string` (optional): the version of the resource you have.
+* targetResourceName `string` (optional): the name of the resource you want to check.
 
 ### Return
-* `boolean`: true if the script is up to date, false if not
-* `string`: the version of the script
+* `boolean`: Whather or not the current resource match the repository you compared with.
+* `string`: the version of the resource found in gituhb
 
-### Example
+### Examples
 ```lua
-lib.version.source('https://github.com/Trippler/tr_lib')
-```
-
-```lua
-lib.version.source('https://github.com/Trippler/tr_lib', 'tr_lib')
+lib.version.source('https://github.com/Trippler/tr_lib', '1.0.0', 'tr_lib')
 ```
 
 ### Notes
-
-* Archived repositories are skipped
-* Repository with no fxmanifest.lua at the very top are skipped
+* Archived repositories are skipped.
+* Repository with no fxmanifest.lua at the very top are skipped.
 
 ## lib.version.release
-this will check the version of the script's latest release on github using the API
+This will check the version of the resource's latest release on github using the release tag
 ```lua
-lib.version.release(repository, resourceName)
+lib.version.release(repositoryURL, releaseTag, targetResourceName)
 ```
 
 ### Parameter
-* repository `string`: the repository of the script
-* resourceName `string`: the name of the resource, optional
+* repositoryURL `string` (optional): the url of the repository you want to compare with your current resource.
+* releaseTag `string` (optional): the tag of the resource you have.
+* targetResourceName `string` (optional): the name of the resource you want to check.
 
 ### Return
-* `boolean`: true if the script is up to date, false if not
-* `string`: the version of the script
+* `boolean`: Whather or not the current resource match the repository you compared with.
+* `string`: the version of the resource found in gituhb
 
-### Example
+### Examples
 ```lua
-lib.version.release('https://github.com/Trippler/tr_lib')
+lib.version.release('https://github.com/Trippler/tr_lib', '1.0.0', 'tr_lib')
 ```
 
-```lua
-lib.version.release('https://github.com/Trippler/tr_lib', 'tr_lib')
-```
-
-### Notes
-
+### Callouts
+<Callout type='info'>
 * Archived repositories are skipped
 * Repository with no release are skipped
-* To be able to use it automatically, you'll just nee to declare your version repository in the fxmanifest.lua
+* To be able to use it without passing any parameter, you'll just need to declare your version and repository url in the fxmanifest.lua
+</Callout>

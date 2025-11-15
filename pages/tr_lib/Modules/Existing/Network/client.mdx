@@ -1,0 +1,24 @@
+# Client
+Network existing is a module that gives you the ability to await for an entity to exist physically and networked.
+
+## lib.awaitNetworkExisting
+
+```lua
+lib.awaitNetworkExisting(entity, netId, timeout)
+```
+
+### Parameters
+
+- entity `number` (optional): The entity to await.
+- netId `number` (optional): The network id of the entity.
+- timeout `number` (optional): The timeout in milliseconds to wait for the entity to exist.
+
+### Returns
+
+- entityClientHandle `number` | `false`: The client handle of the entity.
+- entityNetId `number`: The network id of the entity.
+
+## Callouts
+<Callout type='info'>
+- Please be aware that at least you need to pass an entity or a net id
+</Callout>

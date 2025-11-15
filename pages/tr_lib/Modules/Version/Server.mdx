@@ -9,12 +9,12 @@ this will check the version of the resource's __source code__ on github using th
 lib.version.source(repositoryURL, currentVersion, targetResourceName)
 ```
 
-### Parameter
+### Parameters
 * repositoryURL `string` (optional): the url of the repository you want to compare with your current resource.
 * currentVersion `string` (optional): the version of the resource you have.
 * targetResourceName `string` (optional): the name of the resource you want to check.
 
-### Return
+### Returns
 * success `boolean`: Whather or not the current resource match the repository you compared with.
 * response `string`: the version of the resource found in gituhb
 
@@ -33,12 +33,12 @@ This will check the version of the resource's latest release on github using the
 lib.version.release(repositoryURL, releaseTag, targetResourceName)
 ```
 
-### Parameter
+### Parameters
 * repositoryURL `string` (optional): the url of the repository you want to compare with your current resource.
 * releaseTag `string` (optional): the tag of the resource you have.
 * targetResourceName `string` (optional): the name of the resource you want to check.
 
-### Return
+### Returns
 * success `boolean`: Whather or not the current resource match the repository you compared with.
 * response `string`: the version of the resource found in gituhb
 

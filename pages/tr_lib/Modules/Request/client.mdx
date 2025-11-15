@@ -1,0 +1,16 @@
+import { Callout } from 'nextra/components'
+
+# Client
+Request and await a hash to load.
+
+## lib.requestModel
+```lua
+lib.requestModel(hash, timeout)
+```
+
+### Parameters
+- hash `number`: The hash of the model to request.
+- timeout `number` | `nil`: The timeout in milliseconds to wait for the model to load. Defaults to 10000.
+
+### Returns
+- success `boolean`: Whether the model was successfully loaded.

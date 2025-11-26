@@ -1,0 +1,41 @@
+import { Callout } from 'nextra/components'
+
+# Shared
+Tired of 'table: 000001CC64EC8A40' when passing objects or arrays while trying to print, use this module to easily convert encode them with the indent feature.
+
+# print
+```lua
+print(...)
+```
+
+# Parameters
+
+- varargs `...any`: The values to print
+
+# Examples
+
+```lua
+print('Lenix', 20) -- Lenix 20
+print({'Lenix', 20})
+--[[ 
+
+[
+  "Lenix",
+  20
+]
+
+]]
+
+print({name = 'Lenix', age = 20})
+--[[ 
+{
+  "name": "Lenix",
+  "age": 20
+}
+
+]]
+```
+<Callout type='info'>
+* Just make sure you enable it from the config
+* You can turn off the indent from the config as well
+</Callout>

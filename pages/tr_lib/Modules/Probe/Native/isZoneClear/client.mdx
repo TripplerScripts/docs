@@ -1,0 +1,28 @@
+# Client
+
+# lib.isZoneClear
+```lua
+lib.isZoneClear(inputCoords, radius, exclude)
+```
+
+## Parameters
+- inputCoords `vector3 | object`: The coordinates to check
+  - x `number`
+  - y `number`
+  - z `number`
+- radius `number`: The radius to check
+- exclude `array`: Entities to exclude from the check
+
+## Returns
+- success `boolean`: Whether the zone is clear or not
+
+## Examples
+```lua
+local coords<const> = vector3(100.00, 200.00, 300.00)
+local radius<const> = 10.0
+local exclude = { PlayerPedId() }
+
+local success<const> = lib.isZoneClear(coords, radius, exclude)
+
+lib.console.info(success) -- boolean
+```

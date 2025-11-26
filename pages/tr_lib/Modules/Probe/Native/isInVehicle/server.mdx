@@ -1,0 +1,23 @@
+# Server
+Check if the player is completely in a vehicle or not
+
+# lib.isInVehicle
+```lua
+lib.isInVehicle(source)
+```
+
+## Parameters
+- source `number`: The client source id
+
+## Returns
+- success `boolean`: Whether the player is in a vehicle or not
+
+## Example
+```lua
+local isInVehicle<const> = lib.isInVehicle(source)
+
+if isInVehicle then
+  lib.console.info('You are in a vehicle')
+else
+  lib.console.info('You are not in a vehicle')
+end

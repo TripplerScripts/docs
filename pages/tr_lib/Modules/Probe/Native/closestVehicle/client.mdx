@@ -1,0 +1,23 @@
+# Client
+Find the closest vehicle to the given entity within a radial distance
+
+# lib.closestVehicle
+```lua
+lib.closestVehicle(entity, radialSpace)
+```
+
+## Parameters
+- entity `number`: The entity to compare from
+- radialSpace `number`: The radial distance within to search for the closest vehicle
+
+## Returns
+- entity `number`: the closest vehicle's entity
+
+## Examples
+
+```lua
+local playerPed<const> = PlayerPedId()
+local closestVehicle<const> = lib.closestVehicle(playerPed, 10.0)
+
+lib.console.info(closestVehicle) -- 0123456?...
+```

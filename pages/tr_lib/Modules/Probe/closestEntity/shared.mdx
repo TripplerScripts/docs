@@ -1,0 +1,31 @@
+# Shared
+Find the closest entity to the given coordinates within a radial distance
+
+# lib.closestEntity
+```lua
+lib.closestEntity(inputCoords, radialDistance, pool, exclude)
+```
+
+## Parameters
+
+- inputCoords `vector3 | object`: The coordinates to check
+  - x `number`
+  - y `number`
+  - z `number`
+- radialDistance `number`: The radial distance to check
+- pool `array`: pools you can include: Vehicle | Ped | Object | Pickup | NetObject
+- exclude `array`: The entities to ignore from the search
+
+# Returns
+- closestEntity `number`: The closest entity
+- closestDistance `number`: The closest distance found
+
+# Example
+```lua
+local coords<const> = vector3(100.00, 200.00, 300.00)
+local radial<const> = 10.0
+local pools = { 'Vehicle', 'Object' }
+local exclude = { IsDuplicityVersion() and GetPlayerPed(source) or PlayerPedId() }
+
+local entity<const>, distance<const> = lib.closestEntity(coords, radial, pools, exclude)
+```

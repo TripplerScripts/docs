@@ -1,0 +1,26 @@
+# Shared
+Check where the passed value is an array or not
+
+# lib.isArray
+```lua
+lib.isArray(parameter)
+```
+
+## Parameters
+- parameter `any`: The value to check
+
+## Returns
+- success `boolean`: Whether the value is an array or not
+
+## Examples
+
+```lua
+local object<const> = { name = 'Lenix', age = 20}
+local array<const> = {'Lenix', 20}
+
+local objectCheck = lib.isArray(object)
+local arrayCheck = lib.isArray(array)
+
+lib.console.info(objectCheck) -- false
+lib.console.info(arrayCheck) -- true
+```

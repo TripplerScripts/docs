@@ -4,17 +4,36 @@ Kit of modules that you need on your daily coding instead of writing them on mul
 import { Cards } from 'nextra/components'
 import { GithubIcon, DownloadIcon } from '../components/icons'
 
+# Installation
+## NPM
+### Depend
+```json
+"@trippler/tr_kit": "latest",
+```
+### Install
+```bash
+npm i @trippler/tr_kit
+```
+
+## GitHub
+### Download
+<Cards.Card
+  icon={<GithubIcon />}
+  title="GitHub Release"
+  href="https://github.com/tripplerscripts/tr_kit/releases/latest/download/tr_kit.zipt"
+/>
+
 <Cards>
   <Cards.Card
-    icon={<GithubIcon />}
-    title="Repo"
-    href="https://github.com/TripplerScripts/tr_kit"
+    icon={<NPMIcon />}
+    title="NPM"
+    href="https://www.npmjs.com/package/@trippler/tr_kit"
     arrow
   />
   <Cards.Card
-    icon={<DownloadIcon />}
-    title="Download"
-    href="https://github.com/TripplerScripts/tr_kit/archive/refs/heads/main.zip"
+    icon={<GithubIcon />}
+    title="GitHub"
+    href="https://github.com/TripplerScripts/tr_kit"
     arrow
   />
 </Cards>

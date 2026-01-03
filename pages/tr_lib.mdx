@@ -3,37 +3,44 @@
 A lightweight utility & helper library for FiveM developers. Designed to improve code reusability, consistency, and performance across Trippler resources.
 
 import { Cards } from 'nextra/components'
-import { GithubIcon, DownloadIcon } from '../components/icons'
-import { Tabs } from 'nextra/components'
+import { GithubIcon, DownloadIcon, NPMIcon } from '../components/icons'
 
 <Cards>
   <Cards.Card
-    icon={<GithubIcon />}
-    title="Repo"
-    href="https://github.com/TripplerScripts/tr_lib"
+    icon={<NPMIcon />}
+    title="NPM"
+    href="https://www.npmjs.com/package/@trippler/tr_lib"
     arrow
   />
   <Cards.Card
-    icon={<DownloadIcon />}
-    title="Download"
-    href="https://github.com/TripplerScripts/tr_lib/archive/refs/heads/main.zip"
+    icon={<GithubIcon />}
+    title="GitHub"
+    href="https://github.com/TripplerScripts/tr_lib"
     arrow
   />
 </Cards>
 
-* How to use the library
-<Tabs items={['exports', 'load']}>
-<Tabs.Tab>
-* **Lua**
-```lua filename='shared.lua'
-local lib<const> = exports.tr_lib:require('@tr_lib/get')
+# Installation
+## Typescript
+### Depend
+```json
+"@trippler/tr_lib": "latest",
 ```
-* **JavaScript**
-```lua filename='shared.js'
-const lib = exports.tr_lib.require('@tr_lib/get')
+### Install
+```bash
+npm i @trippler/tr_lib
 ```
-</Tabs.Tab>
-<Tabs.Tab>
-* Unfortunately this library doesn't support the loading from the fxmanifest, just make sure that we are still working on this.
-</Tabs.Tab>
-</Tabs>
+## Lua
+### 1. Download
+<Cards.Card
+  icon={<DownloadIcon />}
+  title="GitHub Release"
+  href="https://github.com/tripplerscripts/tr_lib/releases/latest/download/tr_lib.zip"
+/>
+### 2. Import
+* **lua**
+```lua filename='fxmanifest.lua'
+shared_scripts {
+  '@tr_lib/init.lua',
+}
+```

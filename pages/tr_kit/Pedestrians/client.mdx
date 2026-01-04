@@ -1,157 +1,82 @@
-import Link from 'next/link'
 import { Callout } from 'nextra/components'
 
-# Shared
+# Client
 Create your pedestrians with ease by pushing your args to the functions
 
 ## createSinglePed
-```js
-exports.tr_kit.createSinglePed(settings, timeout)
-```
-
-### Parameters
-
-* settings: `object` [`Options`](#options)
-* timeout?: `number` The timeout in milliseconds for each operations. lean more about [timeout](#Callouts)
-
-### Returns
-
-* entityClientHandle `number`: The entity handle
-* netId `number`: The entity netId
-
-### Examples
-
-```js
-const netId = exports.tr_kit.createSinglePed({
-  hash: GetHashKey('mp_m_freemode_01'),
-  coords: { x: 100, y: 100, z: 100, w: 0 },
-  scenario: {
-    name: 'WORLD_HUMAN_JANITOR',
-    freeze: true,
-    timeToLeave: 1000,
-    playIntroClip: true
+```ts
+createSinglePed({
+  hash: number,
+  coords: [number, number, number, number]
+  scenario?: {
+    name?: string,
+    freeze?: boolean,
+    oblivious?: boolean,
+    timeToLeave?: number,
+    playIntroClip?: boolean
   },
+},
+  timeout?: number
+): Promise<[number, number] | undefined>
+```
+
+---
+### Parameters
+* hash: the hash of the ped model
+* coords: [x, y, z, w]
+* scenario?:
+  * name?: the name of the scenario, see [List of scenario names](https://pastebin.com/6mrYTdQv) or visit update/update.rpf/common/data/ai/scenarios.meta
+  * freeze?: whether the to completely freeze the ped or not
+  * oblivious?: whether to make ped completely oblivious to all events going on around him
+  * timeToLeave?: the timeout on the scenario point to the specified time in milliseconds. If less than 0, sets the IdleForever flag
+  * playIntroClip?: if the ped should play the scenarios enter animation. Sets the SkipEnterClip flag
+* timeout?: the timeout in milliseconds for both when requesting the model and awaiting for its existing
+
+---
+### Returns
+* entityHandle, entityNetId: The entity handle and netId
+
+---
+### Examples
+
+```ts
+import { createSinglePed } from '@trippler/tr_kit/client'
+
+const [entityHandle, entityNetId] = await createSinglePed({
+  hash: GetHashKey('mp_m_freemode_01'),
+  coords: [123.45, 678.90, 123.45, 267.89],
 })
+
+console.log(entityHandle, entityNetId) /* number, number */
 ```
 
-## createMultiplePeds
-```js
-exports.tr_kit.createMultiplePeds(peds, defaultSettings, timeout)
+## destroyCreatedPed
+```ts
+destroyCreatedPed(netId: number, timeout?: number): boolean
 ```
 
+---
 ### Parameters
+* netId: The ped entity netid
+* timeout?: The timeout in milliseconds to wait for the ped to be destroyed
 
-* peds `array` of [`Options`](#options)
-* defaultSettings?: `object` [`Options`](#options)
-* timeout?: `number` The timeout in milliseconds for each operations. lean more about [timeout](#Callouts)
-
+---
 ### Returns
+* success: Whether the ped was deleted or not
 
-* entityClientHandles `array`: The entity handles
-* netIds `array`: The created netIds
-
-### Examples
-
-```js
-const netIds = exports.tr_kit.createMultiplePeds(
-  [
-    {
-      model: GetHashKey('mp_m_freemode_01'),
-      coords: { x: 100, y: 100, z: 100, w: 0 },
-      scenario: {
-          name: 'WORLD_HUMAN_JANITOR',
-          freeze: true,
-          timeToLeave: 1000,
-          playIntroClip: true
-      },
-    },
-    {
-      model: GetHashKey('mp_m_freemode_01'),
-      coords: { x: 100, y: 100, z: 100, w: 0 },
-      scenario: {
-          name: 'WORLD_HUMAN_JANITOR',
-          freeze: true,
-          timeToLeave: 1000,
-          playIntroClip: true
-      },
-    },
-    ....
-  ],
-  {
-    model: GetHashKey('mp_m_freemode_01'),
-    coords: { x: 100, y: 100, z: 100, w: 0 },
-    scenario: {
-      name: 'WORLD_HUMAN_JANITOR',
-      freeze: true,
-      timeToLeave: 1000,
-      playIntroClip: true
-    },
-  }
-)
-```
-
-## clearCreatedPed
-```js
-exports.tr_kit.clearCreatedPed(netId, timeout)
-```
-
-### Parameters
-* netId `number`: The ped netId.
-* timeout?: `number` The timeout in milliseconds for each operations. lean more about [timeout](#Callouts)
-
-### Returns
-* success `boolean`: Whether the ped was deleted or not.
 ---
 ### Examples
+```ts
+import { destroyCreatedPed } from '@trippler/tr_kit/client'
 
-```js
-exports.tr_kit.clearCreatedPed(netId)
+const success = await destroyCreatedPed(65023)
+
+console.log(success) /* true */
 ```
-
-## clearCreatedPeds
-```js
-exports.tr_kit.clearCreatedPeds(netIds, timeout)
-```
-
-### Parameters
-* netIds `array`: The ped netIds
-* timeout?: `number` The timeout in milliseconds for each operations. lean more about [timeout](#Callouts)
-
-### Returns
-* success `boolean`: Whether the peds were deleted or not.
----
-### Examples
-
-```js
-exports.tr_kit.clearCreatedPeds(netIds)
-```
-
-## Options
-
-* hash `number`: The hash of the ped model
-* coords `object | array`: The coordinates of the ped
-  * object:
-    * x: `number`
-    * y: `number`
-    * z: `number`
-    * w: `number`
-  or
-  * array:
-    * `number`
-    * `number`
-    * `number`
-    * `number`
-* w: `number`
-* scenario?: `object`: The scenario of the ped
-  * name `string`: The name of the scenario [List of scenario names](https://pastebin.com/6mrYTdQv)
-  * freeze `boolean`: preventing ped's coordinates to change
-  * oblivious `boolean`: makes the ped oblivious to all events happening around him.
-  * timeToLeave `number`: Sets the timeout on the scenario point to the specified time in milliseconds. If less than 0, sets the IdleForever flag.
-  * playIntroClip `boolean`: If the ped should play the scenarios enter animation. Sets the SkipEnterClip flag.
 
 ## Callouts
 <Callout type='info'>
-* By adding the timeout parameter we gave you the ability to set the timeout for each operation. such as callbacks timeout, instance existings, and more. you can refer to the source code and see more about it
+* The module automatically destroys the created peds on the resource stop detection
 * Please be aware that the client handle is different from the server handle and vice versa.
 * Now we are no longer allowing to pass whether or not the entity should be networked or not since most of the time you are going to clear the entity after use.
 </Callout>

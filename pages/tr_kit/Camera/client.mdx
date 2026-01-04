@@ -1,0 +1,80 @@
+# Client
+change the player's view based on this module's settings
+
+## createCam
+
+```ts
+createCam({
+  coords: [number, number, number, number],
+  rotation: {
+    vertical: number,
+    horizontal: number
+  },
+  details?: {
+    fov?: number, 
+    fadeOut?: number,
+    fadeIn?: number,
+    delay?: number,
+    rotationOrder?: number,
+  }
+}): number
+```
+
+### Parameters
+* coords: the coordinates where the camera is located
+  * [x, y, z, w]
+* rotation:
+  * vertical: the vertical angle of the rotation
+  * horizontal: the horizontal angle of the rotation
+* details?:
+  * fov?: the field of view of camera, aka the zoom
+  * fadeOut?: the amount of time of the fade out
+  * fadeIn?: the amount of time of the fade in
+  * delay?: the delay time to create the camera
+  * rotationOrder?: the order of rotation, see [GET_ENTITY_ROTATION](https://docs.fivem.net/natives/?_0xAFBD61CC738D9EB9)
+
+---
+### Returns
+* camHandle: The camera handle
+
+---
+### Examples
+```ts
+import { createCam } from '@trippler/tr_kit/client'
+
+const camHandle = createCam({ coords: [123.45, 678.90, 123.45, 278.90], rotation: { vertical: 0, horizontal: 0 } })
+console.log(camHandle) /* number */
+```
+
+## destroyCam
+
+```ts
+destroyCam({
+  handle: number,
+  details?: {
+    fadeOut?: number,
+    fadeIn?: number,
+    delay?: number
+  }
+}): void
+```
+
+### Parameters
+* handle: the handle of the camera to destroy
+* details?:
+  * fadeOut?: the amount of time of the fade out
+  * fadeIn?: the amount of time of the fade in
+  * delay?: the delay time to create the camera
+
+---
+### Returns
+* void
+
+---
+### Examples
+```ts
+import { createCam } from '@trippler/tr_kit/client'
+
+const camHandle = createCam({ coords: [123.45, 678.90, 123.45, 278.90], rotation: { vertical: 0, horizontal: 0 } })
+console.log(camHandle) /* number */
+```

@@ -1,0 +1,27 @@
+# Client
+Creates multi-function blips with all the features you need when create your script
+
+## createBlip
+
+```ts
+createBlip(coords: [number, number, number], icon: number): number
+```
+
+### Parameters
+* coords: The coordinates of the blip on the map
+  * [x, y, z]
+* icon: The icon of the blip to display on that point
+
+---
+### Returns
+* handle: The blip handle
+
+---
+### Examples
+
+```ts
+import { createBlip } from '@tr_kit/client/blips'
+
+const blipHandle = createBlip([123.45, 678.90, 123.45], 3)
+console.log(blipHandle) /* number */
+```

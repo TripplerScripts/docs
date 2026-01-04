@@ -5,7 +5,6 @@ Find the closest entity to the given coordinates within a radial distance
 ```lua
 lib.closestEntity(inputCoords, radialDistance, pool, exclude)
 ```
-
 ## Parameters
 
 - inputCoords `vector3 | object`: The coordinates to check
@@ -17,8 +16,8 @@ lib.closestEntity(inputCoords, radialDistance, pool, exclude)
 - exclude `array`: The entities to ignore from the search
 
 # Returns
-- closestEntity `number`: The closest entity
-- closestDistance `number`: The closest distance found
+- closestEntity `number | nil`: The closest entity
+- closestDistance `number | nil`: The closest distance found if closestEntity is not nil
 
 # Example
 ```lua

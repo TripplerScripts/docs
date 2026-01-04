@@ -42,7 +42,7 @@ triggerNuiCallback(
 ```ts
 import { triggerNuiCallback, onNuiCallback } from '@trippler/tr_lib/client'
 
-const success = onNuiCallback('client/module/test', (data: { message: string }) => {
+const success = onNuiCallback<{ message: string }>('client/module/test', (data) => {
   console.log(`call received with ${data}`)
   return data.message
 })

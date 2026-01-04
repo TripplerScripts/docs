@@ -4,13 +4,13 @@ Filters out a string from a string.
 ## lib.filter
 
 ```lua
-lib.filter(string, ...)
+lib.filter(raw, ...)
 ```
 
 ### Parameters
 
-* `string`: The string to filter.
-* `...`: The filters to apply.
+* raw: `string`: The string to filter.
+* ...varargs: `string | table<string, number>` The filters to apply.
 
 ### Returns
 

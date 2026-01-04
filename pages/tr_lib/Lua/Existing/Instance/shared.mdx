@@ -6,17 +6,17 @@ Instance existing is a module to await for a certain entity to exist physically
 ## lib.awaitInstanceExisting
 
 ```lua
-lib.awaitInstanceExisting(entity, netId, timeout)
+lib.awaitInstanceExisting(entityHandle, entityNetId, timeout)
 ```
 
 ### Parameters
 
-* entity?: `number` The entity to await.
-* netId?: `number` The network id of the entity.
+* entityHandle?: `number` The entity to await.
+* entityNetId?: `number` The network id of the entity.
 * timeout?: `number` The timeout in milliseconds to wait for the entity to exist.
 
 ### Returns
-* entityClientHandle `number | false`: The client handle of the entity.
+* entityHandle `number | false`: The handle of the entity.
 * entityNetId `number` | `nil`: The network id of the entity.
 
 ## Callouts

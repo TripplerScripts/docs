@@ -1,0 +1,88 @@
+# Client
+
+# control.disable
+```ts
+control.disable(key: Bind): boolean
+```
+## Parameters
+* key: The keybind to disable
+
+## Examples
+```ts
+control.disable('ESC') /* true */
+```
+
+# control.onDisable
+```ts
+control.onDisable(key: Bind, callback: () => void): boolean
+```
+## Parameters
+* key: The keybind's events to disable and to detect from
+* callback: The function to run when the keybind gets pressed
+
+## Examples
+```ts
+control.onDisable('ESC', () => {
+  console.log('Disabled key got pressed')
+}) /* true */
+```
+
+# control.onHold
+```ts
+control.onHold(key: Bind, callback: () => void): boolean
+```
+## Parameters
+* key: The keybind to hold
+* callback: The function to run when the keybind gets held
+
+## Examples
+```ts
+control.onHold('ESC', () => {
+  console.log('the key is being held')
+}) /* true */
+```
+
+# control.onPress
+```ts
+control.onPress(key: Bind, callback: () => void): boolean
+```
+## Parameters
+* key: The keybind to press
+* callback: The function to run when the keybind gets pressed
+
+## Examples
+```ts
+control.onPress('ESC', () => {
+  console.log('the key got pressed')
+}) /* true */
+```
+
+# control.onRelease
+```ts
+control.onRelease(key: Bind, callback: () => void): boolean
+```
+## Parameters
+* key: The keybind to detect the release from
+* callback: The function to run when the keybind is not being held
+
+## Examples
+```ts
+control.onRelease('ESC', () => {
+  console.log('the key is not being held')
+}) /* true */
+```
+
+# control.onReleased
+```ts
+control.onReleased(key: Bind, callback: () => void): boolean
+```
+## Parameters
+* key: The keybind to detect the release from
+* callback: The function to run when the keybind gets released
+
+## Examples
+```ts
+control.onReleased('ESC', () => {
+  console.log('the key got released')
+}) /* true */
+```

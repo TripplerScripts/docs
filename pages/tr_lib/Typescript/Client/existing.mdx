@@ -3,11 +3,7 @@ wait for a specific entity to exist locally
 
 # awaitInstanceExisting
 ```ts
-awaitInstanceExisting(
-  entityHandle: number | null, 
-  entityNetId?: number | null, 
-  timeout?: number = 10000
-): Promise<[number, number | null] | [false, null]>
+awaitInstanceExisting(entityHandle: number | null, entityNetId?: number | null, timeout?: number = 10000): Promise<[number, number | null] | [false, null]>
 ```
 
 ## Parameters
@@ -17,6 +13,8 @@ awaitInstanceExisting(
 
 ## Examples
 ```ts
+import { awaitInstanceExisting } from '@trippler/tr_lib/client'
+
 const [entityHandle, entityNetId] = await awaitInstanceExisting(null, 63025)
 console.log(entityHandle /* number */, entityNetId /* existing number */)
 ```

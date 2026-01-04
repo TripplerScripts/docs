@@ -1,0 +1,40 @@
+# Client
+client side promise handling
+
+# onNuiCallback
+define an NUI callback and execute a function when the callback is received
+```ts
+onNuiCallback<T = unknown>(callbackType: string, Function: (data: T, callback: (returned: any) => void) => void)
+```
+
+## Parameters
+- callbackType: The unique name of the callback
+- Function: The function to run when the callback is received
+  * data: The data sent from the NUI
+  * callback: The callback value to return to the NUI
+## Examples
+```ts
+import { onNuiCallback } from '@trippler/tr_lib/client'
+
+onNuiCallback<{ message: string }>('test', (data, callback) => {
+  console.log(typeof data.message) /* bish bash bosh */
+  callback(true)
+})
+```
+
+# triggerNuiCallback
+send an NUI message to the NUI
+```ts
+triggerNuiCallback(name: string, ...params: any[]): typeof ReturnType<SendNuiMessage>
+```
+
+## Parameters
+- name: The name of the callback to trigger
+- ...params: The parameters to pass with the callback
+
+## Examples
+```ts
+import { triggerNuiCallback } from '@trippler/tr_lib/client'
+
+triggerNuiCallback('test', { message: 'bish bash bosh' })
+```

@@ -16,7 +16,7 @@ lib.promise.on(name, func)
 ---
 ### Examples
 ```lua filename="client.lua"
-lib.promise.on('createMultiplePeds', function(peds, defaultSettings)
+lib.promise.on('tr_kit:client:createMultiplePeds', function(peds, defaultSettings)
   local createdPeds<const> = createMultiplePeds(peds, defaultSettings)
   return createdPeds
 end)
@@ -39,8 +39,8 @@ lib.promise.await({ timeout, debug }, name, ...)
 ---
 ### Examples
 ```lua filename="client.lua"
-lib.promise.on('createSinglePed', function(settings)
-  local fallback<const> = lib.promise.await({ true }, 'getDefaultSettings', settings)
+lib.promise.on('tr_kit:client:createSinglePed', function(settings)
+  local fallback<const> = lib.promise.await({ true }, 'tr_kit:server:getDefaultSettings', settings)
   local createdPeds<const> = createSinglePed(settings, fallback)
   return createdPeds
 end)

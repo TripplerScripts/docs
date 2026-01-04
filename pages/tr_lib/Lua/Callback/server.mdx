@@ -15,51 +15,34 @@ lib.promise.on(name, func)
 * success `boolean`
 ---
 ### Examples
-* **Lua**
 ```lua filename="server.lua"
-lib.promise.on('createMultiplePeds', function(source, peds, defaultSettings)
+lib.promise.on('tr_kit:server:createMultiplePeds', function(source, peds, defaultSettings)
   local createdPeds<const> = createMultiplePeds(source, peds, defaultSettings)
   return createdPeds
 end)
-```
-* **JavaScript**
-```js filename="server.js"
-lib.promise.on('createMultiplePeds', function(source, peds, defaultSettings) {
-  const createdPeds = createMultiplePeds(source, peds, defaultSettings)
-  return createdPeds
-})
 ```
 
 ## lib.promise.await
 Await for a registered  client callback's result.
 ```lua
-lib.promise.await(debug, name, timeout, source, ...)
+lib.promise.await({ timeout, debug }, name, source, ...)
 ```
 
 ### Parameters
-* debug: `boolean` (optional)
+* debug?: `boolean`
+* timeout?: `number`
 * name: `string`
-* timeout: `number | nil`
 * source: `number`
-* ...: `varargs`
+* ...?: `varargs`
 
 ### Returns
 * `any`
 ---
 ### Examples
-* **Lua**
 ```lua filename="server.lua"
-lib.promise.on('createSinglePed', function(source, settings)
-  local fallback<const> = lib.promise.await('getDefaultSettings', nil, source, settings)
+lib.promise.on('tr_kit:server:createSinglePed', function(source, settings)
+  local fallback<const> = lib.promise.await({ 2500 }, 'tr_kit:client:getDefaultSettings', source, settings)
   local createdPeds<const> = createSinglePed(settings, fallback)
   return createdPeds
 end)
-```
-* **JavaScript**
-```js filename="server.js"
-lib.promise.on('createSinglePed', function(source, settings) {
-  const fallback = await lib.promise.await('getDefaultSettings', nil, source, settings)
-  const createdPeds = createSinglePed(settings, fallback)
-  return createdPeds
-})
 ```

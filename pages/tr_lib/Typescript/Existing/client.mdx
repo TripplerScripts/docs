@@ -1,0 +1,22 @@
+# Client
+wait for a specific entity to exist locally
+
+# awaitInstanceExisting
+```ts
+awaitInstanceExisting(
+  entityHandle: number | null, 
+  entityNetId?: number | null, 
+  timeout?: number = 10000
+): Promise<[number, number | null] | [false, null]>
+```
+
+## Parameters
+- entityHandle: The entity handle to wait for
+- entityNetId?: The entity net id to wait for
+- timeout?: The timeout to wait for in milliseconds
+
+## Examples
+```ts
+const [entityHandle, entityNetId] = await awaitInstanceExisting(null, 63025)
+console.log(entityHandle /* number */, entityNetId /* existing number */)
+```

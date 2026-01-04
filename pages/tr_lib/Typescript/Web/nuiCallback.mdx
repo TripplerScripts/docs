@@ -1,0 +1,52 @@
+# Web
+
+## onNuiCallback
+listen for a NUI message from the client side
+```ts
+onNuiCallback<T extends any[] = any[]>(
+  name: string, 
+  Function: (...parameters: T) => void
+)
+```
+---
+### Parameters
+* name: the name of the NUI callback to listen for
+* Function: the function to run when the NUI callback is received
+
+---
+### Returns
+* success: whether the callback was successfully registered or not
+
+## triggerNuiCallback
+request awaiting a NUI callback from the client side
+```ts
+triggerNuiCallback<T = unknown>(
+  endpoint: string, 
+  dataObject?: object
+): Promise<T>
+```
+---
+### Parameters
+* endpoint: the name of the defined NUI callback to fetch from
+* dataObject: the data object to send with the NUI callback
+
+---
+### Returns
+* response: the return value of the client side NUI callback
+
+---
+### Examples
+```ts
+import { triggerNuiCallback, onNuiCallback } from '@trippler/tr_lib/web'
+
+const success = onNuiCallback('nui/module/test', (data: { message: string }) => {
+  console.log(`call received with ${data}`)
+  return data.message
+})
+
+const data = { message: 'Hello World' }
+const message = await triggerNuiCallback<{ message: string }>('client/module/test', data)
+
+console.log(success) // true
+console.log(message) // Hello World
+```

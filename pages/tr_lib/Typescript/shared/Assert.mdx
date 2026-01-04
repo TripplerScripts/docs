@@ -1,0 +1,18 @@
+# Shared
+check if a condition is truthy and throw an error if it is not
+
+## assert
+```ts
+assert(condition: any, errorMessage?: string): void | never
+```
+### Parameters
+* condition: the truthy condition to check
+* errorMessage: the error message to throw if the condition is not met
+
+### Examples
+```ts
+import { assert } from '@trippler/tr_lib/shared'
+
+const condition = 20
+assert(condition <= 10, 'condition is not met')/* stops execution if condition is not met */
+```

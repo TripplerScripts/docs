@@ -1,0 +1,57 @@
+# Shared
+import { Tabs } from 'nextra/components'
+
+universal console methods for better compatibility using FiveM platform features
+
+<Tabs items={['Fatal', 'Info', 'Trace']}>
+<Tabs.Tab>
+## Fatal
+* Used for crucial error handling that fatals the runtime, good for safe approaches
+```lua
+fatal(...parameters: any[]): void
+```
+
+</Tabs.Tab>
+<Tabs.Tab>
+## Info
+* Used to print usual information, such as log or success operations
+```lua
+info(...parameters: any[]): void
+```
+</Tabs.Tab>
+<Tabs.Tab>
+## Trace
+* A powerful module that helps you track and organize your codes by putting traces on your code to debug a certain bug on it
+```lua
+trace(...parameters: any[]): void
+```
+</Tabs.Tab>
+</Tabs>
+
+### Parameters
+* parameters: the parameters to log
+
+### Examples
+```ts
+import { info, trace, fatal } from '@trippler/tr_lib/shared'
+
+/* Info: Hello World */
+info('Hello World')
+
+/* 
+Trace:  Hello World
+  at Console.trace (citizen:/scripting/v8/console.js:297:19)
+  at trace (@tr_kit/build/server.js:24:15)
+  at @tr_kit/build/server.js:124:1
+*/
+trace('Hello World')
+
+/* 
+Error loading script build/server.js in resource tr_kit: Error: Hello World
+  stack:
+  Error: Hello World
+    at fatal (@tr_kit/build/server.js:30:13)
+    at @tr_kit/build/server.js:126:1
+*/
+fatal('Hello World')
+```

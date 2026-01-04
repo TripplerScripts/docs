@@ -1,0 +1,19 @@
+# Shared
+split a string into an array based on a delimiter
+
+## split
+```ts
+split(raw: string, delimiter = ','): string[]
+```
+### Parameters
+* raw: the string to split
+* delimiter: the delimiter to split the string by
+
+### Examples
+```ts
+import { split } from '@trippler/tr_lib/shared'
+
+const splitResult = split('discord:886958797631926373', ':')
+console.log(splitResult[0]) // 'discord'
+console.log(splitResult[1]) // '886958797631926373'
+```

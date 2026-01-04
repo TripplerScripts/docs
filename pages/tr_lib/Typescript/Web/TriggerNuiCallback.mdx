@@ -1,21 +1,21 @@
-# Client
+# Web
 request awaiting a NUI callback from the client side
 
-# triggerNuiCallback
+## triggerNuiCallback
 ```ts
 triggerNuiCallback<T = unknown>(
   endpoint: string, 
   dataObject?: object
 ): Promise<T>
 ```
-## Parameters
+### Parameters
 * endpoint: the name of the defined NUI callback to fetch from
 * dataObject: the data object to send with the NUI callback
 
-## Return
+### Return
 * response: the return value of the client side NUI callback
 
-## Examples
+### Examples
 ```ts
 import { triggerNuiCallback } from '@trippler/tr_lib/web'
 

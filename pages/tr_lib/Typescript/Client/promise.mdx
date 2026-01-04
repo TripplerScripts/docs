@@ -1,7 +1,7 @@
 # Client
 client side callback handling
 
-# onPromise
+## onPromise
 define a promise that returns a value to the caller
 ```ts
 onPromise<T extends (...args: any) => ReturnType<T>>(
@@ -11,16 +11,16 @@ onPromise<T extends (...args: any) => ReturnType<T>>(
 ```
 
 ---
-## Parameters
+### Parameters
 * endpoint: The unique name of the promise endpoint
 * Function: The function to run when the promise is triggered
 
 ---
-## Return
+### Return
 * success: true if the promise was registered successfully
 
 ---
-## Examples
+### Examples
 ```ts
 import { onPromise } from '@trippler/tr_lib/client'
 
@@ -30,7 +30,7 @@ onPromise('tr_kit/client/test', (message: string) => {
 })
 ```
 
-# triggerPromise
+## triggerPromise
 trigger a defined promise awaiting a value from the server
 ```ts
 triggerPromise<T = unknown>(
@@ -41,17 +41,17 @@ triggerPromise<T = unknown>(
 ```
 
 ---
-## Parameters
+### Parameters
 * options?: [timeout in milliseconds, enable debug mode]
 * endpoint: The unique name of the promise endpoint
 * ...varargs?: The parameters to pass with the callback
 
 ---
-## Return
+### Return
 * response: the return value of the server side promise
 
 ---
-## Examples
+### Examples
 ```ts
 import { triggerPromise } from '@trippler/tr_lib/client'
 

@@ -1,7 +1,7 @@
 # Client
 wait for a specific entity to exist locally
 
-# awaitInstanceExisting
+## awaitInstanceExisting
 ```ts
 awaitInstanceExisting(
   entityHandle: number | null,
@@ -10,12 +10,12 @@ awaitInstanceExisting(
 ): Promise<[number, number | null] | [false, null]>
 ```
 
-## Parameters
+### Parameters
 * entityHandle: The entity handle to wait for
 * entityNetId?: The entity net id to wait for
 * timeout?: The timeout to wait for in milliseconds
 
-## Examples
+### Examples
 ```ts
 import { awaitInstanceExisting } from '@trippler/tr_lib/client'
 

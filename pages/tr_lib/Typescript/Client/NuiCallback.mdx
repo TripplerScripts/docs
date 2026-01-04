@@ -1,7 +1,7 @@
 # Client
 client side promise handling
 
-# onNuiCallback
+## onNuiCallback
 define an NUI callback and execute a function when the callback is received
 ```ts
 onNuiCallback<T = unknown>(
@@ -13,16 +13,16 @@ onNuiCallback<T = unknown>(
 ): void
 ```
 
-## Parameters
+### Parameters
 * endpoint: The unique name of the callback
 * callback: The function to run when the callback is received
   * data: The data sent from the NUI
   * callback: The callback value to return to the NUI
 
-## returns
+### returns
 * success: true if the callback was registered successfully
 
-## Examples
+### Examples
 ```ts
 import { onNuiCallback } from '@trippler/tr_lib/client'
 
@@ -32,7 +32,7 @@ onNuiCallback<{ message: string }>('test', (data, callback) => {
 })
 ```
 
-# triggerNuiCallback
+## triggerNuiCallback
 send an NUI message to the NUI
 ```ts
 triggerNuiCallback(
@@ -41,14 +41,14 @@ triggerNuiCallback(
 ): typeof ReturnType<SendNuiMessage>
 ```
 
-## Parameters
+### Parameters
 * endpoint: The name of the callback to trigger
 * ...parameters: The parameters to pass with the callback
 
-## Return
+### Return
 * reponse: 1 | unknown
 
-## Examples
+### Examples
 ```ts
 import { triggerNuiCallback } from '@trippler/tr_lib/client'
 

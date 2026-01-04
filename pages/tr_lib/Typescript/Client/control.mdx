@@ -1,28 +1,28 @@
 # Client
 
-# control.disable
+## control.disable
 ```ts
 control.disable(key: Bind): boolean
 ```
-## Parameters
+### Parameters
 * key: The keybind to disable
 
-## Examples
+### Examples
 ```ts
 import { control } from '@trippler/tr_lib/client'
 
 control.disable('ESC') /* true */
 ```
 
-# control.onDisable
+## control.onDisable
 ```ts
 control.onDisable(key: Bind, callback: () => void): boolean
 ```
-## Parameters
+### Parameters
 * key: The keybind's events to disable and to detect from
 * callback: The function to run when the keybind gets pressed
 
-## Examples
+### Examples
 ```ts
 import { control } from '@trippler/tr_lib/client'
 
@@ -31,15 +31,15 @@ control.onDisable('ESC', () => {
 }) /* true */
 ```
 
-# control.onHold
+## control.onHold
 ```ts
 control.onHold(key: Bind, callback: () => void): boolean
 ```
-## Parameters
+### Parameters
 * key: The keybind to hold
 * callback: The function to run when the keybind gets held
 
-## Examples
+### Examples
 ```ts
 import { control } from '@trippler/tr_lib/client'
 
@@ -48,15 +48,15 @@ control.onHold('ESC', () => {
 }) /* true */
 ```
 
-# control.onPress
+## control.onPress
 ```ts
 control.onPress(key: Bind, callback: () => void): boolean
 ```
-## Parameters
+### Parameters
 * key: The keybind to press
 * callback: The function to run when the keybind gets pressed
 
-## Examples
+### Examples
 ```ts
 import { control } from '@trippler/tr_lib/client'
 
@@ -65,17 +65,17 @@ control.onPress('ESC', () => {
 }) /* true */
 ```
 
-# control.onRelease
+## control.onRelease
 ```ts
 import { control } from '@trippler/tr_lib/client'
 
 control.onRelease(key: Bind, callback: () => void): boolean
 ```
-## Parameters
+### Parameters
 * key: The keybind to detect the release from
 * callback: The function to run when the keybind is not being held
 
-## Examples
+### Examples
 ```ts
 import { control } from '@trippler/tr_lib/client'
 
@@ -84,15 +84,15 @@ control.onRelease('ESC', () => {
 }) /* true */
 ```
 
-# control.onReleased
+## control.onReleased
 ```ts
 control.onReleased(key: Bind, callback: () => void): boolean
 ```
-## Parameters
+### Parameters
 * key: The keybind to detect the release from
 * callback: The function to run when the keybind gets released
 
-## Examples
+### Examples
 ```ts
 import { control } from '@trippler/tr_lib/client'
 

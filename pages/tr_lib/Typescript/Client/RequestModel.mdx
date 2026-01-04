@@ -1,21 +1,21 @@
 # Client
 request and wait a model to get fully loaded
 
-# requestModel
+## requestModel
 ```ts
 requestModel(
   hash: number,
   timeout?: number = 10000
 ): Promise<boolean>
 ```
-## Parameters
+### Parameters
 * hash: The hash of the model
 * timeout: The timeout of the request in milliseconds
 
-## Returns
+### Returns
 * success: true if the model is loaded, false otherwise including the timeout
 
-## Examples
+### Examples
 ```ts
 import { requestModel } from '@trippler/tr_lib/client'
 

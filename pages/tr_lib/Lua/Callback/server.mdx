@@ -1,10 +1,10 @@
 # Server
 Callbacks provide server-client communication with synchronous-style syntax.
 
-## lib.callback.register
+## lib.promise.on
 Register a callback that clients can await for.
 ```lua
-lib.callback.register(name, func)
+lib.promise.on(name, func)
 ```
 
 ### Parameters
@@ -17,23 +17,23 @@ lib.callback.register(name, func)
 ### Examples
 * **Lua**
 ```lua filename="server.lua"
-lib.callback.register('createMultiplePeds', function(source, peds, defaultSettings)
+lib.promise.on('createMultiplePeds', function(source, peds, defaultSettings)
   local createdPeds<const> = createMultiplePeds(source, peds, defaultSettings)
   return createdPeds
 end)
 ```
 * **JavaScript**
 ```js filename="server.js"
-lib.callback.register('createMultiplePeds', function(source, peds, defaultSettings) {
+lib.promise.on('createMultiplePeds', function(source, peds, defaultSettings) {
   const createdPeds = createMultiplePeds(source, peds, defaultSettings)
   return createdPeds
 })
 ```
 
-## lib.callback.await
+## lib.promise.await
 Await for a registered  client callback's result.
 ```lua
-lib.callback.await(debug, name, timeout, source, ...)
+lib.promise.await(debug, name, timeout, source, ...)
 ```
 
 ### Parameters
@@ -49,16 +49,16 @@ lib.callback.await(debug, name, timeout, source, ...)
 ### Examples
 * **Lua**
 ```lua filename="server.lua"
-lib.callback.register('createSinglePed', function(source, settings)
-  local fallback<const> = lib.callback.await('getDefaultSettings', nil, source, settings)
+lib.promise.on('createSinglePed', function(source, settings)
+  local fallback<const> = lib.promise.await('getDefaultSettings', nil, source, settings)
   local createdPeds<const> = createSinglePed(settings, fallback)
   return createdPeds
 end)
 ```
 * **JavaScript**
 ```js filename="server.js"
-lib.callback.register('createSinglePed', function(source, settings) {
-  const fallback = await lib.callback.await('getDefaultSettings', nil, source, settings)
+lib.promise.on('createSinglePed', function(source, settings) {
+  const fallback = await lib.promise.await('getDefaultSettings', nil, source, settings)
   const createdPeds = createSinglePed(settings, fallback)
   return createdPeds
 })

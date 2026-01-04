@@ -5,7 +5,6 @@ Check where the passed value is an array or not
 ```lua
 lib.isArray(parameter)
 ```
-
 ## Parameters
 - parameter `any`: The value to check
 
@@ -16,11 +15,11 @@ lib.isArray(parameter)
 
 ```lua
 local object<const> = { name = 'Lenix', age = 20}
-local array<const> = {'Lenix', 20}
+local array<const> = { 'Lenix', 20 }
 
 local objectCheck = lib.isArray(object)
 local arrayCheck = lib.isArray(array)
 
-lib.console.info(objectCheck) -- false
-lib.console.info(arrayCheck) -- true
+print(objectCheck) -- false
+print(arrayCheck) -- true
 ```

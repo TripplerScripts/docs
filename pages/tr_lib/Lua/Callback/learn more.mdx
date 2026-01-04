@@ -3,28 +3,28 @@ import { Callout } from 'nextra/components'
 * Please make sure that in every time we mention source we mean it only for the server side of the callbacks only.
 
 # Learn more
-## register
+## on
 
 ### Parameters
-* name: Name of the server callback to register.
+* name: Name of the server callback to define.
 * func: Function to execute when callback is triggered (always receives `source` as first parameter).
 
 ### Receive
-* return: boolean, if the callbacks successfuly register will return true, if not it will return false.
+* return: boolean, if the callbacks successfuly defined will return true, if not it will return false.
 ---
 
 ## await
 
 ### Parameters
-* debug: 
+* debug:  (default: false)
   * Enable debug logging for this callback.
   * Debug mode logs callback's triggers, returns, and timeouts that went during that callback's trip.
+* timeout: (default: 10000)
+  * How much time in __milliseconds__ to await for the client side before timing-out the callback and breaking it. 
+  * You can ignore it to use the default time.
 * name:
   * Name of the registered client callback to await for.
-* timeout:
-  * How much time in __milliseconds__ to await for the client side before timing-out the callback and breaking it. 
-  * You can pass nil to use the default time (default: 10000).
-* source:
+* source: (server only)
   * The client player server's ID to await from.
 * ... :
   * Additional arguments to pass to the callback.
@@ -34,10 +34,10 @@ import { Callout } from 'nextra/components'
 
 ## Callouts
 <Callout type="warning">
-* All registered callbacks are unique identifiers for the callback, you don't need to pass the resource name and the side.
-* e.g lib.callback.register('tr_kit:server:getData').
-  instead just do lib.callback.register('getData').
-  for security reasons, the callbacks are designed to be local only and no one else can call them.
+* All registered callbacks are not unique identifiers for the callback, you need to pass the resource name and the side.
+* e.g lib.promise.on('getData').
+  instead you need to define it like this: lib.promise.on('tr_kit:server:getData').
+  the callbacks are designed to be global and any one else can call them.
 </Callout>
 
 <Callout type="info">

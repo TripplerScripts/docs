@@ -1,0 +1,65 @@
+import { Callout } from 'nextra/components'
+
+# Client
+
+## createSingleVehicle
+```ts
+createSingleVehicle({
+  hash: number
+	coords: [number, number, number, number]
+	preCreate?: boolean
+	plate?: string
+	giveKey?: boolean
+	fuelAmount?: number
+	register?: boolean
+	engine?: {
+		instantly: boolean
+		disableAutoStart: boolean
+	}
+	warp?: {
+		netId: number
+		seat: number
+	}
+	customize?: [number, number, number, { livery: number }]
+}): Promise<[number | null, number] | [false, false] | undefined>
+```
+
+### Parameters
+* hash: the hash of the vehicle
+* coords: [x, y, z, w]
+* preCreate?: whether or not to play a fade animation when spawning the vehicle
+* plate?: the string you want to write on the vehicle's plate
+* giveKey?: whether of not the give the player the vehicle key
+* fuelAmount?: the amount of fuel the vehicle should have
+* register?: whether or not to register the vehicle to the player's database
+* engine?:
+  * instantly: 
+    * true: the vehicle will be set to the state immediately
+    * false: the current driver will physically turn on or off the engine
+  * disableAutoStart: whether or not you want to let the system prevent the engine from starting when the player got into it unless he presses the start button
+* warp?:
+  * netId: the net id of the player's ped
+  * seat: the seat index you want to warp the player into, See eSeatPosition declared in [IS_VEHICLE_SEAT_FREE](https://docs.fivem.net/natives/?_0x22AC59A870E6A669)
+* customize?: [red, green, blue, \{ livery: the index of the livery }]
+
+### Returns
+* netId:
+  * [entityHandle | null, entityNetId]: the net id and the handle of the created vehicle or null if the vehicle was not created
+  * [false, false]: failed to register the vehicle to the player's database
+  * undefined: something went wrong with the script
+
+## createMultipdestroyCreatedVehicleleVehicles
+```ts
+destroyCreatedVehicle(entityNetId: number): Promise<boolean>
+```
+
+### Parameters
+* entityNetId: the net id of the vehicle you want to delete
+
+### Returns
+* success: whether or not the vehicle was deleted successfully
+
+## Callouts
+<Callout type='info'>
+* Now we stoped allowing to pass whether or not you want the create to be networked or not since most of the time you are going to clear the entity after use.
+</Callout>

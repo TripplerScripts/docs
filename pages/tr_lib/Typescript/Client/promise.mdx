@@ -1,8 +1,7 @@
 # Client
-client side callback handling
 
 ## onPromise
-define a promise that returns a value to the caller
+define a promise that returns a value to the server side caller
 ```ts
 onPromise<T extends (...args: any) => ReturnType<T>>(
   endpoint: string,
@@ -20,22 +19,13 @@ onPromise<T extends (...args: any) => ReturnType<T>>(
 * success: true if the promise was registered successfully
 
 ---
-### Examples
-```ts
-import { onPromise } from '@trippler/tr_lib/client'
-
-onPromise('tr_kit/client/test', (message: string) => {
-  console.log(typeof message) /* Let's roll */
-  return 'bingo bango bongo'
-})
-```
 
 ## triggerPromise
 trigger a defined promise awaiting a value from the server
 ```ts
 triggerPromise<T = unknown>(
   options?: [number, boolean] | number | boolean | string,
-  endpoint?: string | any,
+  endpoint: string,
   ...parameters: any[]
 ): Promise<T | null>
 ```
@@ -44,7 +34,7 @@ triggerPromise<T = unknown>(
 ### Parameters
 * options?: [timeout in milliseconds, enable debug mode]
 * endpoint: The unique name of the promise endpoint
-* ...varargs?: The parameters to pass with the callback
+* ...parameters?: The parameters to pass with the callback
 
 ---
 ### Returns
@@ -53,9 +43,14 @@ triggerPromise<T = unknown>(
 ---
 ### Examples
 ```ts
-import { triggerPromise } from '@trippler/tr_lib/client'
+import { onPromise, triggerPromise } from '@trippler/tr_lib/client'
 
-const message = await triggerPromise<{ message: string }>('tr_kit/server/test', `Let's roll`)
+onPromise('tr_kit/client/test', (message: string) => {
+  console.log(`I'm the client number 3, ${message /* server Let's roll param */}`)
+  return 'client bingo bango bongo'
+})
 
-console.log(message) /* bingo bango bongo */
+const message = await triggerPromise<{ message: string }>('tr_kit/server/test', `client Let's roll param`)
+
+console.log(message) /* server bingo bango bongo */
 ```

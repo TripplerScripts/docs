@@ -1,0 +1,62 @@
+# Server
+
+## onPromise
+define a promise that returns a value to the client side caller
+```ts
+onPromise<T extends (
+  source: number,
+  ...parameters: any
+) => ReturnType<T>>
+(
+  endpoint: string,
+  Function: T
+): boolean
+```
+
+---
+### Parameters
+* endpoint: The unique name of the promise endpoint
+* Function: The function to run when the promise is triggered
+  * source: The source of the client side caller
+  * ...parameters: The parameters to pass with the callback
+
+---
+### Returns
+* success: true if the promise was registered successfully
+
+## triggerPromise
+trigger a defined promise awaiting a value from the client
+```ts
+triggerPromis<T = unknown>(
+  options?: [number, boolean] | number | boolean | string,
+  endpoint: string,
+  source: number,
+  ...parameters: any[]
+): Promise<T | null>
+```
+
+---
+### Parameters
+* options?: [timeout in milliseconds, enable debug mode]
+* endpoint: The unique name of the promise endpoint
+* source: The source of the client side where the promise was defined
+* ...parameters?: The parameters to pass with the callback
+
+---
+### Returns
+* response: the return value of the client side promise
+
+---
+### Examples
+```ts
+import { onPromise, triggerPromise } from '@trippler/tr_lib/server'
+
+onPromise('tr_kit/server/test', (source, message: string) => {
+  console.log(`the client number ${source /* 3 */} says: ${message /* client Let's roll param */}`)
+  return 'server bingo bango bongo'
+})
+
+const message = await triggerPromise<{ message: string }>('tr_kit/client/test', 3, `client Let's roll param`)
+
+console.log(message) /* client bingo bango bongo */
+```

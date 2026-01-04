@@ -1,12 +1,14 @@
-# Client
+# Server
+import { Callout } from 'nextra/components'
+
 wait for a specific entity to exist locally
 
 ## awaitInstanceExisting
 ```ts
 awaitInstanceExisting(
-  entityHandle: number | null,
-  entityNetId?: number | null,
-  timeout?: number = 10000
+  entityHandle: number | null, 
+  entityNetId?: number | null, 
+  timeout = 10000
 ): Promise<[number, number | null] | [false, null]>
 ```
 
@@ -17,7 +19,7 @@ awaitInstanceExisting(
 
 ### Examples
 ```ts
-import { awaitInstanceExisting } from '@trippler/tr_lib/client'
+import { awaitInstanceExisting } from '@trippler/tr_lib/server'
 
 const [entityHandle, entityNetId] = await awaitInstanceExisting(null, 63025)
 console.log(entityHandle /* number */, entityNetId /* existing number */)
@@ -25,5 +27,5 @@ console.log(entityHandle /* number */, entityNetId /* existing number */)
 
 ## Callout
 <Callout type="info">
-* the client entity handle does not have the same value as the server side entity handle
+* the server entity handle does not have the same value as the client side entity handle
 </Callout>

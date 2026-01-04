@@ -1,37 +1,26 @@
 # Client
 
 ## control.disable
+disable a keybind's functionality
 ```ts
 control.disable(key: Bind): boolean
 ```
 ### Parameters
 * key: The keybind to disable
 
-### Examples
-```ts
-import { control } from '@trippler/tr_lib/client'
-
-control.disable('ESC') /* true */
-```
 
 ## control.onDisable
+override a keybind's functionality (disable it) with a callback (allow what gets passed only)
 ```ts
 control.onDisable(key: Bind, callback: () => void): boolean
 ```
 ### Parameters
 * key: The keybind's events to disable and to detect from
-* callback: The function to run when the keybind gets pressed
+* callback: The function to run when the disabled keybind gets pressed
 
-### Examples
-```ts
-import { control } from '@trippler/tr_lib/client'
-
-control.onDisable('ESC', () => {
-  console.log('Disabled key got pressed')
-}) /* true */
-```
 
 ## control.onHold
+function that runs when a keybind gets held
 ```ts
 control.onHold(key: Bind, callback: () => void): boolean
 ```
@@ -39,16 +28,9 @@ control.onHold(key: Bind, callback: () => void): boolean
 * key: The keybind to hold
 * callback: The function to run when the keybind gets held
 
-### Examples
-```ts
-import { control } from '@trippler/tr_lib/client'
-
-control.onHold('ESC', () => {
-  console.log('the key is being held')
-}) /* true */
-```
 
 ## control.onPress
+function that runs when a keybind gets pressed
 ```ts
 control.onPress(key: Bind, callback: () => void): boolean
 ```
@@ -56,35 +38,19 @@ control.onPress(key: Bind, callback: () => void): boolean
 * key: The keybind to press
 * callback: The function to run when the keybind gets pressed
 
-### Examples
-```ts
-import { control } from '@trippler/tr_lib/client'
-
-control.onPress('ESC', () => {
-  console.log('the key got pressed')
-}) /* true */
-```
 
 ## control.onRelease
+function that runs when a keybind is not being held
 ```ts
-import { control } from '@trippler/tr_lib/client'
-
 control.onRelease(key: Bind, callback: () => void): boolean
 ```
 ### Parameters
 * key: The keybind to detect the release from
 * callback: The function to run when the keybind is not being held
 
-### Examples
-```ts
-import { control } from '@trippler/tr_lib/client'
-
-control.onRelease('ESC', () => {
-  console.log('the key is not being held')
-}) /* true */
-```
 
 ## control.onReleased
+function that runs when a keybind gets released
 ```ts
 control.onReleased(key: Bind, callback: () => void): boolean
 ```
@@ -92,9 +58,32 @@ control.onReleased(key: Bind, callback: () => void): boolean
 * key: The keybind to detect the release from
 * callback: The function to run when the keybind gets released
 
-### Examples
+
+---
+## Returns
+* success: whether the keybind was successfully registered or not
+
+## Examples
 ```ts
 import { control } from '@trippler/tr_lib/client'
+
+control.disable('ESC') /* true */
+
+control.onDisable('ESC', () => {
+  console.log('Disabled key got pressed')
+}) /* true */
+
+control.onHold('ESC', () => {
+  console.log('the key is being held')
+}) /* true */
+
+control.onPress('ESC', () => {
+  console.log('the key got pressed')
+}) /* true */
+
+control.onRelease('ESC', () => {
+  console.log('the key is not being held')
+}) /* true */
 
 control.onReleased('ESC', () => {
   console.log('the key got released')

@@ -24,6 +24,7 @@ createSingleVehicle({
 }): Promise<[number | null, number] | [false, false] | undefined>
 ```
 
+---
 ### Parameters
 * hash: the hash of the vehicle
 * coords: [x, y, z, w]
@@ -42,6 +43,7 @@ createSingleVehicle({
   * seat: the seat index you want to warp the player into, See eSeatPosition declared in [IS_VEHICLE_SEAT_FREE](https://docs.fivem.net/natives/?_0x22AC59A870E6A669)
 * customize?: [red, green, blue, \{ livery: the index of the livery }]
 
+---
 ### Returns
 * netId:
   * [entityHandle | null, entityNetId]: the net id and the handle of the created vehicle or null if the vehicle was not created
@@ -53,9 +55,11 @@ createSingleVehicle({
 destroyCreatedVehicle(entityNetId: number): Promise<boolean>
 ```
 
+---
 ### Parameters
 * entityNetId: the net id of the vehicle you want to delete
 
+---
 ### Returns
 * success: whether or not the vehicle was deleted successfully
 

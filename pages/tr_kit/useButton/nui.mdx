@@ -1,0 +1,39 @@
+import { Callout } from 'nextra/components'
+
+# Nui
+
+## useButton
+```ts
+useButton({
+  parent: string
+  content?: string
+  id?: string
+  style?: string
+  size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl'
+  type?: 'primary' | 'secondary' | 'soft' | 'none'
+  disableKey?: boolean
+  onClick?: (disable: () => void) => void
+  onHover?: () => void
+}): HTMLDivElement
+```
+
+---
+### Parameters
+* parent: the id or the class name of the parent element to attach to
+* content?: the innerHTML you want to insert to the button
+* id?: a unique identifier for the button
+* style?: the tailwind class lists, see [Tailwind Docs](https://tailwindcss.com/docs/)
+* size?: the size of the button and content
+* type?: the type of the button
+* disableKey?: whether or not the disable the enter key as a onClick invoker
+* onClick?: the function to run when the button gets clicked
+* onHover?: the function to run when the button gets hovered
+
+---
+### Returns
+* HTMLDivElement: the button's div element
+
+## Callouts
+<Callout type='info'>
+* You can set a custom style of the button by passing 'none' on the type parameter and filling the style parameter
+</Callout>

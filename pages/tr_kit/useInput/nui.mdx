@@ -1,0 +1,32 @@
+import { Callout } from 'nextra/components'
+
+# Nui
+
+## useInput
+```ts
+useDiv({
+  parent: string
+  style?: string
+  defaultValue?: string
+  placeholder?: string
+  type?: string
+  onJoin?: () => void
+  onChange?: () => void
+  onSubmit?: () => void
+}): HTMLInputElement
+```
+
+---
+### Parameters
+* parent: the id of the parent element to attach to
+* style?: the tailwind class lists, see [Tailwind Docs](https://tailwindcss.com/docs/)
+* defaultValue?: the by default value you want to insert to the input placeholder
+* placeholder?: the placeholder text you want to display in the input
+* type?: the type of the input, see [W3Schools](https://www.w3schools.com/html/html_form_input_types.asp)
+* onJoin?: the function to run when the user clicks on the input's placeholder (when he finally has the cursor and the ability to start typing)
+* onChange?: the function to run each time the input value changes
+* onSubmit?: the function to run when the user presses the enter key
+
+---
+### Returns
+* HTMLInputElement: the input element

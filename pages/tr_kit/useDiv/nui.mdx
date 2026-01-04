@@ -1,0 +1,24 @@
+import { Callout } from 'nextra/components'
+
+# Nui
+
+## useDiv
+```ts
+useDiv({
+  parent: string
+  id?: string
+  style?: string
+  content?: string
+}): HTMLDivElement
+```
+
+---
+### Parameters
+* parent: the id or the class name of the parent element to attach to
+* content?: the innerHTML you want to insert to the div
+* id?: a unique identifier for the div
+* style?: the tailwind class lists, see [Tailwind Docs](https://tailwindcss.com/docs/)
+
+---
+### Returns
+* HTMLDivElement: the div element

@@ -10,7 +10,7 @@ onNuiCallback<T = unknown>(
     data: T,
     callback: (returned: any) => void
   ) => void
-): void
+): boolean
 ```
 
 ### Parameters
@@ -19,7 +19,7 @@ onNuiCallback<T = unknown>(
   * data: The data sent from the NUI
   * callback: The callback value to return to the NUI
 
-### returns
+### Returns
 * success: true if the callback was registered successfully
 
 ### Examples

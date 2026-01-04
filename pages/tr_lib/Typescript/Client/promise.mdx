@@ -1,40 +1,61 @@
 # Client
-client side promise handling
+client side callback handling
 
-# onNuiCallback
-define an NUI callback and execute a function when the callback is received
+# onPromise
+define a promise that returns a value to the caller
 ```ts
-onNuiCallback<T = unknown>(callbackType: string, Function: (data: T, callback: (returned: any) => void) => void)
+onPromise<T extends (...args: any) => ReturnType<T>>(
+  endpoint: string,
+  Function: T
+): boolean
 ```
 
+---
 ## Parameters
-- callbackType: The unique name of the callback
-- Function: The function to run when the callback is received
-  * data: The data sent from the NUI
-  * callback: The callback value to return to the NUI
+* endpoint: The unique name of the promise endpoint
+* Function: The function to run when the promise is triggered
+
+---
+## Return
+* success: true if the promise was registered successfully
+
+---
 ## Examples
 ```ts
-import { onNuiCallback } from '@trippler/tr_lib/client'
+import { onPromise } from '@trippler/tr_lib/client'
 
-onNuiCallback<{ message: string }>('test', (data, callback) => {
-  console.log(typeof data.message) /* bish bash bosh */
-  callback(true)
+onPromise('tr_kit/client/test', (message: string) => {
+  console.log(typeof message) /* Let's roll */
+  return 'bingo bango bongo'
 })
 ```
 
-# triggerNuiCallback
-send an NUI message to the NUI
+# triggerPromise
+trigger a defined promise awaiting a value from the server
 ```ts
-triggerNuiCallback(name: string, ...params: any[]): typeof ReturnType<SendNuiMessage>
+triggerPromise<T = unknown>(
+  options?: [number, boolean] | number | boolean | string,
+  endpoint?: string | any,
+  ...parameters: any[]
+): Promise<T | null>
 ```
 
+---
 ## Parameters
-- name: The name of the callback to trigger
-- ...params: The parameters to pass with the callback
+* options?: [timeout in milliseconds, enable debug mode]
+* endpoint: The unique name of the promise endpoint
+* ...varargs?: The parameters to pass with the callback
 
+---
+## Return
+* response: the return value of the server side promise
+
+---
 ## Examples
 ```ts
-import { triggerNuiCallback } from '@trippler/tr_lib/client'
+import { triggerPromise } from '@trippler/tr_lib/client'
 
-triggerNuiCallback('test', { message: 'bish bash bosh' })
+const message = await triggerPromise<{ message: string }>('tr_kit/server/test', `Let's roll`)
+
+console.log(message) /* bingo bango bongo */
 ```

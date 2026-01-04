@@ -9,6 +9,8 @@ control.disable(key: Bind): boolean
 
 ## Examples
 ```ts
+import { control } from '@trippler/tr_lib/client'
+
 control.disable('ESC') /* true */
 ```
 
@@ -22,6 +24,8 @@ control.onDisable(key: Bind, callback: () => void): boolean
 
 ## Examples
 ```ts
+import { control } from '@trippler/tr_lib/client'
+
 control.onDisable('ESC', () => {
   console.log('Disabled key got pressed')
 }) /* true */
@@ -37,6 +41,8 @@ control.onHold(key: Bind, callback: () => void): boolean
 
 ## Examples
 ```ts
+import { control } from '@trippler/tr_lib/client'
+
 control.onHold('ESC', () => {
   console.log('the key is being held')
 }) /* true */
@@ -52,6 +58,8 @@ control.onPress(key: Bind, callback: () => void): boolean
 
 ## Examples
 ```ts
+import { control } from '@trippler/tr_lib/client'
+
 control.onPress('ESC', () => {
   console.log('the key got pressed')
 }) /* true */
@@ -59,6 +67,8 @@ control.onPress('ESC', () => {
 
 # control.onRelease
 ```ts
+import { control } from '@trippler/tr_lib/client'
+
 control.onRelease(key: Bind, callback: () => void): boolean
 ```
 ## Parameters
@@ -67,6 +77,8 @@ control.onRelease(key: Bind, callback: () => void): boolean
 
 ## Examples
 ```ts
+import { control } from '@trippler/tr_lib/client'
+
 control.onRelease('ESC', () => {
   console.log('the key is not being held')
 }) /* true */
@@ -82,6 +94,8 @@ control.onReleased(key: Bind, callback: () => void): boolean
 
 ## Examples
 ```ts
+import { control } from '@trippler/tr_lib/client'
+
 control.onReleased('ESC', () => {
   console.log('the key got released')
 }) /* true */

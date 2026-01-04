@@ -1,0 +1,26 @@
+# Client
+listen for a NUI message from the client side
+
+# onNuiCallback
+```ts
+onNuiCallback<T extends any[] = any[]>(
+  name: string, 
+  Function: (...args: T) => void
+)
+```
+## Parameters
+* name: the name of the NUI callback to listen for
+* Function: the function to run when the NUI callback is received
+
+## Returns
+* success: whether the callback was successfully registered or not
+
+## Examples
+```ts
+import { onNuiCallback } from '@trippler/tr_lib/web'
+
+onNuiCallback<[ string ]>('test', (nickname) => {
+  console.log(`call test received with ${nickname}`)
+  return CreateUser(nickname)
+})
+```

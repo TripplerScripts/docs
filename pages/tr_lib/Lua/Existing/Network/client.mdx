@@ -11,16 +11,16 @@ lib.awaitNetworkExisting(netId, entity, timeout)
 
 ### Parameters
 
-- netId `number` (optional): The network id of the entity.
-- entity `number` (optional): The entity to await.
-- timeout `number` (optional): The timeout in milliseconds to wait for the entity to exist.
+* netId?: `number` The network id of the entity.
+* entity?: `number` The entity to await.
+* timeout?: `number` The timeout in milliseconds to wait for the entity to exist.
 
 ### Returns
 
-- entityNetId `number | false`: The network id of the entity.
-- entityClientHandle `number` | `nil`: The client handle of the entity.
+* entityNetId `number | false`: The network id of the entity.
+* entityClientHandle `number` | `nil`: The client handle of the entity.
 
 ## Callouts
 <Callout type='info'>
-- Please be aware that at least you need to pass an entity or a net id
+* Please be aware that at least you need to pass an entity or a net id
 </Callout>

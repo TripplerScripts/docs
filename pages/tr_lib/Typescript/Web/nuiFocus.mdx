@@ -3,7 +3,7 @@ toggle the nui focus on both of the keyboard and the mouse
 
 # nuiFocus
 ```ts
-nuiFocus(keyboard?: boolean, cursor?: boolean): void
+nuiFocus(keyboard?: boolean, cursor?: boolean): Promise<unknown>
 ```
 ## Parameters
 * keyboard: whether to toggle the keyboard focus or not
@@ -11,5 +11,7 @@ nuiFocus(keyboard?: boolean, cursor?: boolean): void
 
 ## Examples
 ```ts
+import { nuiFocus } from '@trippler/tr_lib/web'
+
 nuiFocus(true, true)
 ```

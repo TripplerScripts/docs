@@ -42,8 +42,8 @@ exports.tr_kit.createMultiplePeds(peds, defaultSettings, timeout)
 ### Parameters
 
 * peds `array` of [`Options`](#options)
-* defaultSettings `object` (optional): [`Options`](#options)
-* timeout `number` (optional): The timeout in milliseconds for each operations. lean more about [timeout](#Callouts)
+* defaultSettings?: `object` [`Options`](#options)
+* timeout?: `number` The timeout in milliseconds for each operations. lean more about [timeout](#Callouts)
 
 ### Returns
 
@@ -97,7 +97,7 @@ exports.tr_kit.clearCreatedPed(netId, timeout)
 
 ### Parameters
 * netId `number`: The ped netId.
-* timeout `number` (optional): The timeout in milliseconds for each operations. lean more about [timeout](#Callouts)
+* timeout?: `number` The timeout in milliseconds for each operations. lean more about [timeout](#Callouts)
 
 ### Returns
 * success `boolean`: Whether the ped was deleted or not.
@@ -115,7 +115,7 @@ exports.tr_kit.clearCreatedPeds(netIds, timeout)
 
 ### Parameters
 * netIds `array`: The ped netIds
-* timeout `number` (optional): The timeout in milliseconds for each operations. lean more about [timeout](#Callouts)
+* timeout?: `number` The timeout in milliseconds for each operations. lean more about [timeout](#Callouts)
 
 ### Returns
 * success `boolean`: Whether the peds were deleted or not.
@@ -142,7 +142,7 @@ exports.tr_kit.clearCreatedPeds(netIds)
     * `number`
     * `number`
 * w: `number`
-* scenario (optional) `object`: The scenario of the ped
+* scenario?: `object`: The scenario of the ped
   * name `string`: The name of the scenario [List of scenario names](https://pastebin.com/6mrYTdQv)
   * freeze `boolean`: preventing ped's coordinates to change
   * oblivious `boolean`: makes the ped oblivious to all events happening around him.

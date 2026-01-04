@@ -3,13 +3,17 @@ wait for a specific entity to exist locally
 
 # awaitInstanceExisting
 ```ts
-awaitInstanceExisting(entityHandle: number | null, entityNetId?: number | null, timeout?: number = 10000): Promise<[number, number | null] | [false, null]>
+awaitInstanceExisting(
+  entityHandle: number | null,
+  entityNetId?: number | null,
+  timeout?: number = 10000
+): Promise<[number, number | null] | [false, null]>
 ```
 
 ## Parameters
-- entityHandle: The entity handle to wait for
-- entityNetId?: The entity net id to wait for
-- timeout?: The timeout to wait for in milliseconds
+* entityHandle: The entity handle to wait for
+* entityNetId?: The entity net id to wait for
+* timeout?: The timeout to wait for in milliseconds
 
 ## Examples
 ```ts

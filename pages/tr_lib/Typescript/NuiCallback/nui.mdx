@@ -1,4 +1,4 @@
-# Web
+# Nui
 
 ## onNuiCallback
 listen for a NUI message from the client side
@@ -37,7 +37,7 @@ triggerNuiCallback<T = unknown>(
 ---
 ### Examples
 ```ts
-import { triggerNuiCallback, onNuiCallback } from '@trippler/tr_lib/web'
+import { triggerNuiCallback, onNuiCallback } from '@trippler/tr_lib/nui'
 
 const success = onNuiCallback('nui/module/test', (data: { message: string }) => {
   console.log(`call received with ${data}`)

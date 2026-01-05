@@ -10,11 +10,13 @@ createSinglePed({
   coords: [number, number, number, number]
   scenario?: {
     name?: string,
-    freeze?: boolean,
-    oblivious?: boolean,
     timeToLeave?: number,
     playIntroClip?: boolean
   },
+  behavior?: {
+    freeze?: boolean,
+    oblivious?: boolean,
+  }
 },
   timeout?: number
 ): Promise<[number, number] | undefined>
@@ -25,11 +27,12 @@ createSinglePed({
 * hash: the hash of the ped model
 * coords: [x, y, z, w]
 * scenario?:
-  * name?: the name of the scenario, see [List of scenario names](https://pastebin.com/6mrYTdQv) or visit update/update.rpf/common/data/ai/scenarios.meta
+  * name: the name of the scenario, see [List of scenario names](https://pastebin.com/6mrYTdQv) or visit update/update.rpf/common/data/ai/scenarios.meta
+  * timeToLeave: the timeout on the scenario point to the specified time in milliseconds. If less than 0, sets the IdleForever flag
+  * playIntroClip: if the ped should play the scenarios enter animation. Sets the SkipEnterClip flag
+* behavior?:
   * freeze?: whether the to completely freeze the ped or not
   * oblivious?: whether to make ped completely oblivious to all events going on around him
-  * timeToLeave?: the timeout on the scenario point to the specified time in milliseconds. If less than 0, sets the IdleForever flag
-  * playIntroClip?: if the ped should play the scenarios enter animation. Sets the SkipEnterClip flag
 * timeout?: the timeout in milliseconds for both when requesting the model and awaiting for its existing
 
 ---

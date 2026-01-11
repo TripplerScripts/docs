@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # Nui
 
 ## onNuiCallback
@@ -50,3 +52,7 @@ const message = await triggerNuiCallback<{ message: string }>('client/module/tes
 console.log(success) // true
 console.log(message) // Hello World
 ```
+
+<Callout type="info">
+* If you encountered this error: Uncaught (in promise) TypeError: Failed to fetch, then it means that you didn't called back from the defined NUI callback on the opposite context
+</Callout>
